@@ -1,4 +1,9 @@
 import React from 'react';
+import './NavBar.css'
+import img1 from '../images/bg.jpg';
+import img2 from '../images/Logo.png'
+import '../images/image.css'
+import '../buttons/Buttons.css'
 
 class Navbar extends React.Component{
     constructor(props){
@@ -8,23 +13,37 @@ class Navbar extends React.Component{
     render(){
         return(
             <div>
-                <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">About Us</a>
-      <a class="nav-item nav-link" href="/category">Categories</a>
-      <a class="nav-item nav-link" href="/course">Courses</a>
-      <a class="nav-item nav-link" href="#">News</a>
-      <a class="nav-item nav-link" href="#">Contact Us</a>
-   
+
+<nav class="nav">
+    <div class="container">
+        <div class="logo">
+            <a href="#" src={img2}>YourLogo</a>
+           
+        </div>
+        <div class="main_list" id="mainListDiv">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="/category">Categories</a></li>
+                <li><a href="/course">Courses</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#" role="button" class="btn1">Login</a></li>
+            </ul>
+        </div>
+        <div class="media_button">
+            <button class="main_media_button" id="mediaButton">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+       
     </div>
-  </div>
 </nav>
+  
+<section class="home">
+<img class="image" src={img1} /> 
+</section>
             </div>
         )
     }

@@ -41,9 +41,13 @@ class Navbar extends React.Component{
     </div>
 </nav>
   
+
+
 <section class="home">
-<img class="image" src={img1} /> 
+<img class="image" src={img1} />
 </section>
+
+
             </div>
         )
     }

@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 public class Course {
     @Id
     private String id;
-    private String Name;
-    private int Duration;
-    private String Description;
-    private List<String> ContentIds;
-    private String CategoryId;
-    private List<String> LecturerIds;
-    private List<String> StudentIds;
+    private String name;
+    private int duration;
+    private String description;
+    private List<String> contentIds;
+    private String categoryId;
+    private List<String> lecturerIds;
+    private List<String> studentIds;
 }

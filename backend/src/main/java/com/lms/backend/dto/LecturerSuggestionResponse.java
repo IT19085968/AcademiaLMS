@@ -5,5 +5,7 @@ import lombok.Data;
 @Data
 public class LecturerSuggestionResponse {
 
-    private String Name;
+    private String id;
+
+    private String name;
 }

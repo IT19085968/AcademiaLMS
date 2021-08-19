@@ -16,7 +16,10 @@ import lombok.NoArgsConstructor;
 public class Category {
     @Id
     private String id;
-    private String Name;
-    private List<String> LecturerIds;
-    private List<String> CourseIds;
+    private String name;
+    private String description;
+
+    private List<Course> courses;
+//    private List<String> LecturerIds;
+//    private List<String> CourseIds;
 }

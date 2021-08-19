@@ -1,5 +1,5 @@
 import React from 'react';
-import './NavBar.css'
+//import './NavBar.css'
 import img1 from '../images/bg.jpg';
 import img2 from '../images/Logo.png'
 import '../images/image.css'
@@ -14,7 +14,7 @@ class Navbar extends React.Component{
         return(
             <div>
 
-<nav class="nav">
+    {/* <nav class="nav">
     <div class="container">
         <div class="logo">
             <a href="#" src={img2}>YourLogo</a>
@@ -40,13 +40,55 @@ class Navbar extends React.Component{
         </div>
        
     </div>
-</nav>
+</nav> */}
   
 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+    <a class="navbar-brand" href="/home">&nbsp;&nbsp;&nbsp;Academia</a>
+   
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="nav">
+            <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/category">Categories</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/course">Courses</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+            </li>
+        </ul>
 
-<section class="home">
-<img class="image" src={img1} />
-</section>
+     <div>
+
+    <ul class="nav justify-content-end">
+            <li class="nav-item">
+            <a class="nav-link active" href="#">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                LOGIN</a>
+            </li>
+    </ul>
+
+                </div>
+    
+    
+    
+    </div>
+</nav>
+
+                <section class="home">
+                <img class="image" src={img1} />
+                </section>
 
 
             </div>

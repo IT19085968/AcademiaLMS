@@ -27,6 +27,7 @@ class Navbar extends React.Component{
                 <li><a href="/category">Categories</a></li>
                 <li><a href="/course">Courses</a></li>
                 <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Contact Us</a></li>
                 <li><a href="#" role="button" class="btn1">Login</a></li>
             </ul>
         </div>

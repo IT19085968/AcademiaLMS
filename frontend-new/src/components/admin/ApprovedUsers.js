@@ -1,16 +1,16 @@
 import React from 'react';
 import axios from 'axios';
+import "./ApprovedUsers.css"
 
-
-class PendingUsers extends React.Component{
+class ApprovedUsers extends React.Component{
     constructor(props){
         super(props);
        
         }
 
-
         render() {
             return (
+              
                 <div className="container">
                
                         <br></br><br></br>
@@ -18,24 +18,24 @@ class PendingUsers extends React.Component{
                         <ul class="nav nav-tabs">
                         
                             <li class="nav-item">
-                                <a class="nav-link " href="/one">Approved Users</a>
+                                <a class="nav-link active" href="/one">Approved Users</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/two">Pending Users</a>
+                                <a class="nav-link" href="/two">Pending Users</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/addUsers">Add Users</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">View All Courses</a>
+                                <a class="nav-link" href="/addUsers">View All Courses</a>
                             </li>
                         </ul>
                 
-                    Two 
-                
+                     One 
+                   
                 </div>
             );
         }
 }
 
-export default PendingUsers;
+export default ApprovedUsers;

@@ -7,7 +7,7 @@ import Category from './components/category/Category';
 import Course from './components/course/Course';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
-import ApprovedUsers from './components/admin/One';
+import ApprovedUsers from './components/admin/ApprovedUsers';
 import PendingUsers from './components/admin/Two';
 import AddUsers from './components/admin/Three';
 

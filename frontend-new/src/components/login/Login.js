@@ -19,6 +19,7 @@ class Login extends React.Component{
 
                     <div>
                      <a class="btn btn" href="/one" role="button" >User Management</a>
+                     <a class="btn btn" href="/one" role="button" >Admin</a>
                    
                      
                  </div>

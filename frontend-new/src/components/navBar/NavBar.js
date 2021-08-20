@@ -86,6 +86,30 @@ class Navbar extends React.Component{
                 <img class="image" src={img1} />
                 </section> */}
 
+<section  class="home">
+                    <img class="image" src={img1} /> 
+                    <div class="centered">
+                        <div class="hero-text text-white">
+                            <h1>Get The Best Free Online Courses</h1>
+                            <p>Learn from nothing to be  something</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                            <input type="text" class="form-control" placeholder="Course"/>
+                            </div>
+
+                            <div class="col">
+                            <input type="text" class="form-control" placeholder="Category"/>
+                            </div>
+                            
+                            <div class="col">
+                            <input class="btn btn" type="submit" value="Search"/>   
+                            </div>
+                        </div>
+                    </div>
+                </section> 
+
 
             </div>
         )

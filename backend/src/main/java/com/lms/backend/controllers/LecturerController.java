@@ -30,8 +30,8 @@ public class LecturerController {
 
     @GetMapping("/suggestion")
     public ResponseEntity<List<LecturerSuggestionResponse>> getAdminList(){
-        List<Lecturer> adminList = lecturerService.getLecturerList();
-        List<LecturerSuggestionResponse> adminSuggestionResponses = adminList.stream().map(admin -> modelMapper.map(admin, LecturerSuggestionResponse.class)).collect(Collectors.toList());
+        List<Lecturer> lecturerList = lecturerService.getLecturerList();
+        List<LecturerSuggestionResponse> adminSuggestionResponses = lecturerList.stream().map(admin -> modelMapper.map(admin, LecturerSuggestionResponse.class)).collect(Collectors.toList());
         return new ResponseEntity<>(adminSuggestionResponses, HttpStatus.OK);
     }
 

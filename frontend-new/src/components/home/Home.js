@@ -12,7 +12,7 @@ class Home extends React.Component{
 
     render(){
         return(
-           
+           <div>
 
                 <section  class="home">
                     <img class="image" src={img1} /> 
@@ -37,6 +37,8 @@ class Home extends React.Component{
                         </div>
                     </div>
                 </section> 
+
+                </div>
             
         )
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Select from 'react-select';
 import './AddCategory.css'
 
 class AddCategory extends React.Component{
@@ -16,17 +17,17 @@ class AddCategory extends React.Component{
         }
     }
 
-       componentDidMount(){
-      axios.get('http://localhost:8080/lecturer/suggestion')
+    componentDidMount(){
+      axios.get('http://localhost:8080/courses/suggestion')
       .then(response=>{
-          this.setState({lecturers: response.data.data},()=>{
+          this.setState({courses: response.data.data},()=>{
               let data=[];
-              this.state.lecturers.map((item,index)=>{
-                  let lecturer={
+              this.state.courses.map((item,index)=>{
+                  let course={
                       value:item._id,
-                      label:item.name
+                      label:item.trip_type
                   }
-                  data.push(lecturer)
+                  data.push(course)
               });
               this.setState({options:data});
           })
@@ -37,6 +38,9 @@ class AddCategory extends React.Component{
         this.setState({[e.target.name]: e.target.value })
     }
 
+    onCourseSelect(e){
+      this.setState({selectedCourses:e? e.map(item=>item.value):[]});
+  }
 
     onSubmit(e){
       e.preventDefault();
@@ -84,7 +88,7 @@ class AddCategory extends React.Component{
         />
       </div>
       
-       <input type="submit" value="Add Course"/>
+       <input type="submit" value="Add Category"/>
      </form>
    </div>
  </div>

@@ -31,12 +31,6 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
-    // @GetMapping("/{id}")
-    // public List<String> getCoursesByCategoryId(@PathVariable String id) {
-    // Category category = categoryService.getCoursesOfaCategory(id);
-    // return category.getCourseIds();
-    // }
-
     @GetMapping("/{id}")
     public Category getOneCategory(@PathVariable String id) {
         return categoryService.getCategoryById(id);

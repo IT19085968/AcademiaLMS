@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 public class Lecturer {
     @Id
     private String id;
-    private String Name;
-    private String Email;
-    private String ContactNumber;
-    private String Password;
+    private String name;
+    private String email;
+    private String contactNumber;
+    private String password;
     private String CategoryId;
     private String[] CourseIds;
 

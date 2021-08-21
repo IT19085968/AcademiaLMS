@@ -1,11 +1,18 @@
 package com.lms.backend.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.lms.backend.dto.CourseSuggestionResponse;
+import com.lms.backend.dto.LecturerSuggestionResponse;
 import com.lms.backend.models.Course;
+import com.lms.backend.models.Lecturer;
 import com.lms.backend.services.CourseService;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,15 +28,18 @@ public class CourseController {
 
     private final CourseService courseService;
 
+    @Autowired(required=true)
+    private ModelMapper modelMapper;
+
     @Autowired
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
 
-    @GetMapping("/")
-    public List<Course> getCoursesList() {
-        return courseService.getAllCourses();
-    }
+//    @GetMapping("/")
+//    public List<Course> getCoursesList() {
+//        return courseService.getAllCourses();
+//    }
 
     @GetMapping("/{id}")
     public Course getOneCourse(@PathVariable String id) {
@@ -39,6 +49,13 @@ public class CourseController {
     @PostMapping("/")
     public void addCourse(@RequestBody Course course) {
         courseService.addNewCourse(course);
+    }
+
+    @GetMapping("/suggestion")
+    public ResponseEntity<List<CourseSuggestionResponse>> getAdminList(){
+        List<Course> courseList = courseService.getAllCourses();
+        List<CourseSuggestionResponse> courseSuggestionResponses = courseList.stream().map(admin -> modelMapper.map(admin, CourseSuggestionResponse.class)).collect(Collectors.toList());
+        return new ResponseEntity<>(courseSuggestionResponses, HttpStatus.OK);
     }
 
 }

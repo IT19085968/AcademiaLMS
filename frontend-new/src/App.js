@@ -11,6 +11,8 @@ import ApprovedUsers from './components/admin/ApprovedUsers';
 import PendingUsers from './components/admin/Two';
 import AddUsers from './components/admin/Three';
 import Footer from './components/footer/Footer';
+import EditCourse from './components/course/EditCourse';
+import EditCategory from './components/category/EditCategory';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/add-course" component={AddCourse}/>
           <Route path="/category" component={Category}/>
           <Route path="/add-category" component={AddCategory}/>
+          <Route path="/edit-category" component={EditCourse}/>
+          <Route path="//edit-category" component={EditCategory}/>
           <Route path="/home" component={Home}/>
           <Route path="/login" component ={Login}/>
           

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import './AddCourse.css'
+import img1 from '../images/bg.jpg';
 
 class AddCourse extends React.Component{
     constructor(props){
@@ -23,7 +24,7 @@ class AddCourse extends React.Component{
   //   componentDidMount(){
   //     axios.get('http://localhost:8080/lecturer/suggestion')
   //     .then(response=>{
-  //         this.setState({lecturers: response.data.data},()=>{
+  //         this.setState({lecturers: response.data},()=>{
   //             let data=[];
   //             this.state.lecturers.map((item,index)=>{
   //                 let lecturer={
@@ -36,6 +37,23 @@ class AddCourse extends React.Component{
   //         })
   //     })
   // }
+
+//   componentDidMount(){
+//     axios.get('http://localhost:8080/lecturer/suggestion')
+//     .then(response=>{
+//         this.setState({lecturers: response.data},()=>{
+//             let data=[];
+//             this.state.lecturers.map((item,index)=>{
+//                 let lecturer={
+//                     value:item._id,
+//                     label:item.name
+//                 }
+//                 data.push(lecturer)
+//             });
+//             this.setState({options:data});
+//         })
+//     })
+// }
 
 
     onChange(e){
@@ -68,6 +86,32 @@ class AddCourse extends React.Component{
    render() {
        return (
             <div>
+
+<section  class="home">
+                    <img class="image" src={img1} /> 
+                    <div class="centered">
+                        <div class="hero-text text-white">
+                            <h1>Get The Best Free Online Courses</h1>
+                            <p>Learn from nothing to be  something</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                            <input type="text" class="form-control" placeholder="Course"/>
+                            </div>
+
+                            <div class="col">
+                            <input type="text" class="form-control" placeholder="Category"/>
+                            </div>
+                            
+                            <div class="col">
+                            <input class="btn btn" type="submit" value="Search"/>   
+                            </div>
+                        </div>
+                    </div>
+                </section> 
+
+                
                 <div id="registration-form">
   <div class='fieldset'>
     <legend>Add Your Course Here</legend>

@@ -10,6 +10,7 @@ import Login from './components/login/Login';
 import ApprovedUsers from './components/admin/ApprovedUsers';
 import PendingUsers from './components/admin/Two';
 import AddUsers from './components/admin/Three';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
 
 
         </Switch>
+        <Footer/>
       </section>
      </Router>
     </div>

@@ -1,9 +1,9 @@
 package com.lms.backend.models;
 
-import java.util.List;
+// import java.util.List;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+// import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -21,11 +21,11 @@ public class Course {
     private int duration;
     private String description;
 
-//    @DBRef
-//    private List<Lecturer> lecturers;
+    // @DBRef
+    // private List<Lecturer> lecturers;
 
-//    private List<String> contentIds;
-//    private String categoryId;
-//    private List<String> lecturerIds;
-//    private List<String> studentIds;
+    // private List<String> contentIds;
+    // private String categoryId;
+    // private List<String> lecturerIds;
+    // private List<String> studentIds;
 }

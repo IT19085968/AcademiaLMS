@@ -16,33 +16,35 @@ import EditCourse from "./components/course/EditCourse";
 import EditCategory from "./components/category/EditCategory";
 
 import ComBar from "./components/commonbars/ComBar";
+import Exam from "./components/exams/Exam";
 
 function App() {
   return (
     <div className="appClass">
       <Router>
         <ComBar />
-        {/* <section> */}
-        <Switch>
-          <Route path="/course" component={Course} />
-          <Route path="/add-course" component={AddCourse} />
-          <Route path="/category" component={Category} />
-          <Route path="/add-category" component={AddCategory} />
-          <Route path="/edit-category" component={EditCourse} />
-          <Route path="//edit-category" component={EditCategory} />
-          <Route path="/" exact component={Home} />
-          <Route path="/login" component={Login} />
+        <section>
+          <Switch>
+            <Route path="/course" component={Course} />
+            <Route path="/add-course" component={AddCourse} />
+            <Route path="/category" component={Category} />
+            <Route path="/add-category" component={AddCategory} />
+            <Route path="/edit-category" component={EditCourse} />
+            <Route path="//edit-category" component={EditCategory} />
+            <Route path="/" exact component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/exams" component={Exam} />
 
-          <Route path="/one" component={ApprovedUsers} />
-          <Route path="/two" component={PendingUsers} />
-          <Route path="/addUsers" component={AddUsers} />
+            <Route path="/one" component={ApprovedUsers} />
+            <Route path="/two" component={PendingUsers} />
+            <Route path="/addUsers" component={AddUsers} />
 
-          <Route path="/one" component={ApprovedUsers} />
-          <Route path="/two" component={PendingUsers} />
-          <Route path="/addUsers" component={AddUsers} />
-        </Switch>
-        <Footer />
-        {/* </section> */}
+            <Route path="/one" component={ApprovedUsers} />
+            <Route path="/two" component={PendingUsers} />
+            <Route path="/addUsers" component={AddUsers} />
+          </Switch>
+          <Footer />
+        </section>
       </Router>
     </div>
     // <div className="App">

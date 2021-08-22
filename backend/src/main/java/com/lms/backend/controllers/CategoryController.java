@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.lms.backend.dto.CategorySuggestionResponse;
-import com.lms.backend.dto.CourseSuggestionResponse;
+// import com.lms.backend.dto.CourseSuggestionResponse;
 import com.lms.backend.models.Category;
-import com.lms.backend.models.Course;
+// import com.lms.backend.models.Course;
 import com.lms.backend.services.CategoryService;
 
 import org.modelmapper.ModelMapper;
@@ -28,7 +28,7 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @Autowired(required=true)
+    @Autowired(required = true)
     private ModelMapper modelMapper;
 
     @Autowired
@@ -36,15 +36,17 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-//    @GetMapping("/")
-//    public List<Category> getCategories() {
-//        return categoryService.getAllCategories();
-//    }
+    // @GetMapping("/")
+    // public List<Category> getCategories() {
+    // return categoryService.getAllCategories();
+    // }
 
     @GetMapping("/suggestion")
-    public ResponseEntity<List<CategorySuggestionResponse>> getAdminList(){
+    public ResponseEntity<List<CategorySuggestionResponse>> getAdminList() {
         List<Category> categoryList = categoryService.getAllCategories();
-        List<CategorySuggestionResponse> categorySuggestionResponses = categoryList.stream().map(category -> modelMapper.map(category, CategorySuggestionResponse.class)).collect(Collectors.toList());
+        List<CategorySuggestionResponse> categorySuggestionResponses = categoryList.stream()
+                .map(category -> modelMapper.map(category, CategorySuggestionResponse.class))
+                .collect(Collectors.toList());
         return new ResponseEntity<>(categorySuggestionResponses, HttpStatus.OK);
     }
 

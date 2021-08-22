@@ -1,7 +1,7 @@
 package com.lms.backend.controllers;
 
 import com.lms.backend.dto.LecturerSuggestionResponse;
-import com.lms.backend.models.Course;
+// import com.lms.backend.models.Course;
 import com.lms.backend.models.Lecturer;
 import com.lms.backend.services.LecturerService;
 import org.modelmapper.ModelMapper;
@@ -20,7 +20,7 @@ public class LecturerController {
     @Autowired
     private LecturerService lecturerService;
 
-    @Autowired(required=true)
+    @Autowired(required = true)
     private ModelMapper modelMapper;
 
     @PostMapping("/")
@@ -29,9 +29,10 @@ public class LecturerController {
     }
 
     @GetMapping("/suggestion")
-    public ResponseEntity<List<LecturerSuggestionResponse>> getAdminList(){
+    public ResponseEntity<List<LecturerSuggestionResponse>> getAdminList() {
         List<Lecturer> lecturerList = lecturerService.getLecturerList();
-        List<LecturerSuggestionResponse> adminSuggestionResponses = lecturerList.stream().map(admin -> modelMapper.map(admin, LecturerSuggestionResponse.class)).collect(Collectors.toList());
+        List<LecturerSuggestionResponse> adminSuggestionResponses = lecturerList.stream()
+                .map(admin -> modelMapper.map(admin, LecturerSuggestionResponse.class)).collect(Collectors.toList());
         return new ResponseEntity<>(adminSuggestionResponses, HttpStatus.OK);
     }
 

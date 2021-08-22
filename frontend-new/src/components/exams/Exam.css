@@ -1,0 +1,32 @@
+/* .examClass {
+  position: relative;
+} */
+/* .table {
+  margin-left: 10%;
+  margin-right: 20%;
+  position: absolute;
+  -ms-transform: translateX(-30%);
+  transform: translateX(-30%);
+  height: 400x;
+} */
+
+/* .examClass {
+  height: 200px;
+  position: relative;
+  border: 3px solid green;
+}
+
+table {
+  margin: 0;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+} */
+
+table.tableClass {
+  margin-left: 5%;
+  margin-right: 5% !important;
+}

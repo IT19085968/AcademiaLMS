@@ -22,7 +22,7 @@ public class Exam {
     private String endTime;
     private String instructions;
     private String type;
-    
-    private String[] LessonIds;
-    
+
+    // private String[] LessonIds;
+
 }

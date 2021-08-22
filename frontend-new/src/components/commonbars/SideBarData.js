@@ -53,11 +53,17 @@ export const SideBarData = [
     cName: "nav-text",
   },
   {
-    title: "Login",
-    path: "/login",
-    icon: <IoIcons.IoMdPeople />,
+    title: "Exams",
+    path: "/exams",
+    icon: <BsIcons.BsNewspaper />,
     cName: "nav-text",
   },
+  // {
+  //   title: "Login",
+  //   path: "/login",
+  //   icon: <IoIcons.IoMdPeople />,
+  //   cName: "nav-text",
+  // },
   //   {
   //     title: "Support",
   //     path: "/support",

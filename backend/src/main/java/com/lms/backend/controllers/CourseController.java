@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.lms.backend.dto.CourseSuggestionResponse;
-import com.lms.backend.dto.LecturerSuggestionResponse;
+// import com.lms.backend.dto.LecturerSuggestionResponse;
 import com.lms.backend.models.Course;
-import com.lms.backend.models.Lecturer;
+// import com.lms.backend.models.Lecturer;
 import com.lms.backend.services.CourseService;
 
 import org.modelmapper.ModelMapper;
@@ -28,7 +28,7 @@ public class CourseController {
 
     private final CourseService courseService;
 
-    @Autowired(required=true)
+    @Autowired(required = true)
     private ModelMapper modelMapper;
 
     @Autowired
@@ -36,10 +36,10 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-//    @GetMapping("/")
-//    public List<Course> getCoursesList() {
-//        return courseService.getAllCourses();
-//    }
+    // @GetMapping("/")
+    // public List<Course> getCoursesList() {
+    // return courseService.getAllCourses();
+    // }
 
     @GetMapping("/{id}")
     public Course getOneCourse(@PathVariable String id) {
@@ -52,9 +52,10 @@ public class CourseController {
     }
 
     @GetMapping("/suggestion")
-    public ResponseEntity<List<CourseSuggestionResponse>> getAdminList(){
+    public ResponseEntity<List<CourseSuggestionResponse>> getAdminList() {
         List<Course> courseList = courseService.getAllCourses();
-        List<CourseSuggestionResponse> courseSuggestionResponses = courseList.stream().map(course -> modelMapper.map(course, CourseSuggestionResponse.class)).collect(Collectors.toList());
+        List<CourseSuggestionResponse> courseSuggestionResponses = courseList.stream()
+                .map(course -> modelMapper.map(course, CourseSuggestionResponse.class)).collect(Collectors.toList());
         return new ResponseEntity<>(courseSuggestionResponses, HttpStatus.OK);
     }
 

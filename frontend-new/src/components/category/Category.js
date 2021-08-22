@@ -23,7 +23,7 @@ class Category extends React.Component {
     return (
       <div className="category">
         <section class="home">
-          <img class="image" src={img1} />
+          {/* <img class="image" src={img1} /> */}
           <div class="centered">
             <div class="hero-text text-white">
               <h1>Get The Best Free Online Courses</h1>

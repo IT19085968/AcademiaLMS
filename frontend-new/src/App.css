@@ -5,10 +5,9 @@
   margin: 0;
   padding: 0;
   font-family: "Lato", sans-serif;
-  /* background-color: white; */
 }
 
-.home,
+/* .home,
 .category,
 .course {
   display: flex;
@@ -16,8 +15,7 @@
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  /* background-color: white; */
-}
+} */
 
 .appClass {
   background-color: white;

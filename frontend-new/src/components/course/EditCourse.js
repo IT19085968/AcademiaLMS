@@ -4,7 +4,7 @@ import Select from 'react-select';
 import './AddCourse.css'
 import img1 from '../images/bg.jpg';
 
-class AddCourse extends React.Component{
+class EditCourse extends React.Component{
     constructor(props){
         super(props);
         this.onChange=this.onChange.bind(this);
@@ -19,41 +19,6 @@ class AddCourse extends React.Component{
           selectedLecturers:[]
         }
     }
-
-
-  //   componentDidMount(){
-  //     axios.get('http://localhost:8080/lecturer/suggestion')
-  //     .then(response=>{
-  //         this.setState({lecturers: response.data},()=>{
-  //             let data=[];
-  //             this.state.lecturers.map((item,index)=>{
-  //                 let lecturer={
-  //                     value:item._id,
-  //                     label:item.name
-  //                 }
-  //                 data.push(lecturer)
-  //             });
-  //             this.setState({options:data});
-  //         })
-  //     })
-  // }
-
-//   componentDidMount(){
-//     axios.get('http://localhost:8080/lecturer/suggestion')
-//     .then(response=>{
-//         this.setState({lecturers: response.data},()=>{
-//             let data=[];
-//             this.state.lecturers.map((item,index)=>{
-//                 let lecturer={
-//                     value:item._id,
-//                     label:item.name
-//                 }
-//                 data.push(lecturer)
-//             });
-//             this.setState({options:data});
-//         })
-//     })
-// }
 
 
     onChange(e){
@@ -114,7 +79,7 @@ class AddCourse extends React.Component{
                 
                 <div id="registration-form">
   <div class='fieldset'>
-    <legend>Add Your Course Here</legend>
+    <legend>Edit Your Course Details Here</legend>
     <form  onSubmit={this.onSubmit}>
      
       <div class='row'>
@@ -141,7 +106,8 @@ class AddCourse extends React.Component{
         isMulti
         />
       </div> */}
-      <input type="submit" value="Add Course"/>
+      <input type="submit" value="Save Details"/>
+      <input type="submit" value="Delete Course"/>
     </form>
   </div>
 </div>
@@ -150,4 +116,4 @@ class AddCourse extends React.Component{
    }
 }
 
-export default AddCourse;
+export default EditCourse;

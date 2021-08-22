@@ -54,7 +54,7 @@ public class CourseController {
     @GetMapping("/suggestion")
     public ResponseEntity<List<CourseSuggestionResponse>> getAdminList(){
         List<Course> courseList = courseService.getAllCourses();
-        List<CourseSuggestionResponse> courseSuggestionResponses = courseList.stream().map(admin -> modelMapper.map(admin, CourseSuggestionResponse.class)).collect(Collectors.toList());
+        List<CourseSuggestionResponse> courseSuggestionResponses = courseList.stream().map(course -> modelMapper.map(course, CourseSuggestionResponse.class)).collect(Collectors.toList());
         return new ResponseEntity<>(courseSuggestionResponses, HttpStatus.OK);
     }
 

@@ -19,12 +19,12 @@ class AddCategory extends React.Component {
 
   componentDidMount() {
     axios.get("http://localhost:8080/courses/suggestion").then((response) => {
-      this.setState({ courses: response.data.data }, () => {
+      this.setState({ courses: response.data }, () => {
         let data = [];
         this.state.courses.map((item, index) => {
           let course = {
             value: item._id,
-            label: item.trip_type,
+            label: item.name,
           };
           data.push(course);
         });

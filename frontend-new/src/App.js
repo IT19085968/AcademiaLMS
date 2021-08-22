@@ -11,6 +11,9 @@ import Login from "./components/login/Login";
 import ApprovedUsers from "./components/admin/ApprovedUsers";
 import PendingUsers from "./components/admin/Two";
 import AddUsers from "./components/admin/Three";
+import Footer from "./components/footer/Footer";
+import EditCourse from "./components/course/EditCourse";
+import EditCategory from "./components/category/EditCategory";
 
 import ComBar from "./components/commonbars/ComBar";
 
@@ -19,18 +22,27 @@ function App() {
     <div className="appClass">
       <Router>
         <ComBar />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/category" component={Category} />
-          <Route path="/add-category" component={AddCategory} />
-          <Route path="/course" component={Course} />
-          <Route path="/add-course" component={AddCourse} />
-          <Route path="/login" component={Login} />
+        <section>
+          <Switch>
+            <Route path="/course" component={Course} />
+            <Route path="/add-course" component={AddCourse} />
+            <Route path="/category" component={Category} />
+            <Route path="/add-category" component={AddCategory} />
+            <Route path="/edit-category" component={EditCourse} />
+            <Route path="//edit-category" component={EditCategory} />
+            <Route path="/" exact component={Home} />
+            <Route path="/login" component={Login} />
 
-          <Route path="/one" component={ApprovedUsers} />
-          <Route path="/two" component={PendingUsers} />
-          <Route path="/addUsers" component={AddUsers} />
-        </Switch>
+            <Route path="/one" component={ApprovedUsers} />
+            <Route path="/two" component={PendingUsers} />
+            <Route path="/addUsers" component={AddUsers} />
+
+            <Route path="/one" component={ApprovedUsers} />
+            <Route path="/two" component={PendingUsers} />
+            <Route path="/addUsers" component={AddUsers} />
+          </Switch>
+          <Footer />
+        </section>
       </Router>
     </div>
     // <div className="App">

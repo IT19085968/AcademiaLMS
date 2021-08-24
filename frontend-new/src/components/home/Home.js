@@ -14,7 +14,7 @@ class Home extends React.Component{
         return(
            <div>
 
-                <section  class="home">
+                {/* <section  class="home">
                     <img class="image" src={img1} /> 
                     <div class="centered">
                         <div class="hero-text text-white">
@@ -36,7 +36,42 @@ class Home extends React.Component{
                             </div>
                         </div>
                     </div>
-                </section> 
+                </section>  */}
+
+<section class="home">
+          <img class="image" src={img1} />
+          <div class="centered">
+            <div class="hero-text text-white">
+              <h1 className="pic-back">Get The Best Free Online Courses</h1>
+              <p className="pic-back">Learn from nothing to be something</p>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Course" />
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Category"
+                />
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="col">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input class="btn btn" type="submit" value="Search" />
+              </div>
+            </div>
+          </div>
+        </section> 
 
                 </div>
             

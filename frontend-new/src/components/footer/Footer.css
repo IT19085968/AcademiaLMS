@@ -1,25 +1,32 @@
 .footer-section {
 	border-top: 3px solid #364351;
+	display: inline-block;
+	
 }
 
 .footer-warp {
 	max-width: 1559px;
 	padding: 0 15px;
 	margin: 0 auto;
+	display: inline-block;
 }
 
 .widget-item {
 	width: 20%;
 	padding: 0 15px;
+	display: flex;
+	display: inline-block;
 }
 
 .widget-item h4 {
 	margin-bottom: 30px;
+	display: inline-block;
 }
 
 .widget-item ul {
 	list-style: none;
 	padding-top: 30px;
+	display: inline-block;
 }
 
 .widget-item ul li {
@@ -27,24 +34,29 @@
 	font-size: 14px;
 	font-weight: 500;
 	color: #878787;
+	display: inline-block;
 }
 
 .widget-item ul li:last-child {
 	margin-bottom: 0;
+	display: inline-block;
 }
 
 .widget-item ul a {
 	color: #878787;
+	display: inline-block;
 }
 
 .widget-item ul.contact-list li {
 	margin-bottom: 27px;
 	position: relative;
 	padding-left: 10px;
+	display: inline-block;
 }
 
 .widget-item ul.contact-list li:last-child {
 	margin-bottom: 0;
+	display: inline-block;
 }
 
 .widget-item ul.contact-list li:after {
@@ -56,10 +68,12 @@
 	top: 6px;
 	border-radius: 50%;
 	background: #d82a4e;
+	display: inline-block;
 }
 
 .footer-newslatter {
 	padding-right: 38px;
+	display: inline-block;
 }
 
 .footer-newslatter input[type=email] {
@@ -71,17 +85,20 @@
 	border: none;
 	font-size: 14px;
 	background: #edf4f6;
+	display: inline-block;
 }
 
 .footer-newslatter .site-btn {
 	min-width: 143px;
 	margin-bottom: 20px;
+	display: inline-block;
 }
 
 .footer-newslatter p {
 	margin-bottom: 0;
 	font-weight: 500;
 	font-style: italic;
+	display: inline-block;
 }
 
 .footer-bottom {
@@ -89,11 +106,13 @@
 	background: #edf4f6;
 	padding: 20px 0;
 	margin-top: 50px;
+	display: inline-block;
 }
 
 .footer-menu {
 	list-style: none;
 	float: right;
+	
 }
 
 .footer-menu li {
@@ -107,6 +126,7 @@
 
 .footer-menu li:last-child a:after {
 	display: none;
+	display: inline-block;
 }
 
 .footer-menu li a {
@@ -117,6 +137,7 @@
 	padding-right: 10px;
 	margin-right: 10px;
 	position: relative;
+	display: inline-block;
 }
 
 .footer-menu li a:after {
@@ -124,6 +145,7 @@
 	content: "|";
 	right: 0;
 	top: 0;
+	display: inline-block;
 }
 
 .copyright {
@@ -132,4 +154,5 @@
 	font-size: 14px;
 	font-weight: 600;
 	color: #474747;
+	display: inline-block;
 }

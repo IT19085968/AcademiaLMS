@@ -87,7 +87,7 @@ class AddCourse extends React.Component{
        return (
             <div>
 
-<section  class="home">
+{/* <section  class="home">
                     <img class="image" src={img1} /> 
                     <div class="centered">
                         <div class="hero-text text-white">
@@ -109,7 +109,7 @@ class AddCourse extends React.Component{
                             </div>
                         </div>
                     </div>
-                </section> 
+                </section>  */}
 
                 
                 <div id="registration-form">

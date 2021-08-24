@@ -8,6 +8,7 @@ body{
     min-width:250px;
     margin: 20px auto;
     position: relative;
+    margin-top: 1000px;
   }
   
   #registration-form .fieldset {
@@ -144,5 +145,45 @@ body{
   ::-moz-focus-inner {
     border: 0;
   }
+
+  .pic-back{
+    color: white;
+  }
+
+
+  /*------------------
+  Hero Section
+---------------------*/
+
+.hero-section {
+	height: 948px;
+}
+
+.hero-text {
+	text-align: center;
+	padding-top: 340px;
+	margin-bottom: 105px;
+}
+
+.hero-text h2 {
+	font-size: 60px;
+	font-weight: 500;
+	margin-bottom: 20px;
+}
+
+.intro-newslatter input[type=text],
+.intro-newslatter input[type=email] {
+	height: 53px;
+	width: 36.4%;
+	padding: 0 30px;
+	margin-right: 22px;
+	float: left;
+	border: none;
+	font-size: 14px;
+}
+
+.intro-newslatter .site-btn {
+	min-width: 214px;
+}
   
   /* Resources1× 0.5× 0.25×Rerun */

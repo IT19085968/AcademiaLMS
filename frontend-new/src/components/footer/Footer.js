@@ -9,11 +9,13 @@ class Footer extends React.Component{
     render() {
         return (
              <div>
-                 <br></br>
-                 <br></br>
-                 <br></br>
-                 <br></br>
+               
+			   <br></br>
                  <footer class="footer-section spad pb-0">
+				
+				 <br></br>
+				 <br></br>
+				 <br></br>
 		<div class="footer-top">
 			<div class="footer-warp">
 				<div class="row">
@@ -27,7 +29,7 @@ class Footer extends React.Component{
 					</div>
 					<div class="widget-item">
 						<h4>Engeneering</h4>
-						<ul>
+						<ul >
 							<li><a href="">Applied Studies</a></li>
 							<li><a href="">Computer Engeneering</a></li>
 							<li><a href="">Software Engeneering</a></li>

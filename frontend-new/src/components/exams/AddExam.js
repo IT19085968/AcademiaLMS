@@ -32,23 +32,9 @@ export default class AddExam extends Component {
 
   componentWillMount() {
     axios.get("http://localhost:8080/courses/").then((res) => {
-      this.setState(
-        {
-          courses: res.data,
-        }
-        // ,
-        // () => {
-        //   let data = [];
-        //   this.state.courses.map((item, index) => {
-        //     let course = {
-        //       value: item.id,
-        //       label: item.name,
-        //     };
-        //     data.push(course);
-        //   });
-        //   this.setState({ options: data });
-        // }
-      );
+      this.setState({
+        courses: res.data,
+      });
     });
   }
 

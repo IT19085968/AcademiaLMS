@@ -17,6 +17,7 @@ import EditCategory from "./components/category/EditCategory";
 
 import ComBar from "./components/commonbars/ComBar";
 import Exam from "./components/exams/Exam";
+import SelectedCourse from "./components/course/SelectedCourse";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/add-category" component={AddCategory} />
             <Route path="/edit-category" component={EditCourse} />
             <Route path="//edit-category" component={EditCategory} />
+            <Route path="/select-course" component={SelectedCourse}/>
             <Route path="/" exact component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/exams" component={Exam} />

@@ -63,16 +63,18 @@ class Category extends React.Component {
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
         <div className="container">
+          <table>
           {this.state.categories.length > 0 &&
             this.state.categories.map((item, index) => (
               <div key={index} className="card mb-3">
                 <div className="p-3">
-                  <h5>Category Name : {item.name}</h5>
-                  <h5>Description : {item.description}</h5>
+                <tr><a href="#"><td><h3>{item.name}</h3></td> </a></tr>
+                  {/* <tr><th><h5>Description : {item.description}</h5></th></tr> */}
                   <br></br>
                 </div>
               </div>
             ))}
+            </table>
         </div>
 
         <div>

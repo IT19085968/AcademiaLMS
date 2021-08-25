@@ -36,10 +36,10 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    // @GetMapping("/")
-    // public List<Course> getCoursesList() {
-    // return courseService.getAllCourses();
-    // }
+    @GetMapping("/")
+    public List<Course> getCoursesList() {
+        return courseService.getAllCourses();
+    }
 
     @GetMapping("/{id}")
     public Course getOneCourse(@PathVariable String id) {

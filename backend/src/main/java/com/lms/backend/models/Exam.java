@@ -16,6 +16,7 @@ public class Exam {
     private String id;
     private String title;
     private String courseId;
+    private String courseName;
     private String categoryId;
     private String examDate;
     private String startTime;

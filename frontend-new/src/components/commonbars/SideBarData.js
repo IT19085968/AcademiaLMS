@@ -46,9 +46,15 @@ export const SideBarData = [
     icon: <IoIcons.IoMdPeople />,
     cName: "nav-text",
   },
+  // {
+  //   title: "Settings",
+  //   path: "/settings",
+  //   icon: <MdIcons.MdSettings />,
+  //   cName: "nav-text",
+  // },
   {
-    title: "Settings",
-    path: "/settings",
+    title: "Quizes",
+    path: "/quizMain",
     icon: <MdIcons.MdSettings />,
     cName: "nav-text",
   },

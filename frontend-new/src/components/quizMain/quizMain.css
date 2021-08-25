@@ -1,0 +1,43 @@
+.quizContent {
+  display: table;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: aquamarine;
+  padding: 30px;
+}
+
+.NextStep {
+  background-color: rgb(67, 180, 67);
+  color: white;
+  padding: 10px 30px;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.NextStep:hover {
+  background-color: rgb(25, 102, 25);
+}
+
+.NextStep[disabled] {
+  display: none;
+}
+
+.finalPage {
+  text-align: center;
+}
+
+.finalPage h1 {
+  /* border: 1px solid black; */
+  padding-left: 26%;
+  padding-right: 26%;
+  text-align: center;
+  margin: 15px 0;
+  font-size: 25px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: green;
+  text-transform: none;
+  text-shadow: none;
+}

@@ -29,15 +29,20 @@ class Exam extends React.Component {
   render() {
     return (
       <div>
-        <div className="row">
-          <div className="titlesClass">
+        <div className="rowClass">
+          <div className="titlesClass md-6">
             <h3>All Exams</h3>
           </div>
-          {/* <div>
-            <button type="submit">Add Exam</button>
-          </div> */}
         </div>
-
+        <div className="addClass ">
+          {/* <button type="submit" className="btn btn-primary">
+            Add Exam
+          </button> */}
+          <a class="btn btn-primary" href="/add-exam" role="button">
+            Add Exam
+          </a>
+        </div>
+        <br />
         <div className="container">
           <div class="search-container">
             <form action="/action_page.php">
@@ -64,7 +69,7 @@ class Exam extends React.Component {
               {this.state.exams.map((exam) => (
                 <tr key={exam.id}>
                   <td>{exam.title}</td>
-                  <td></td>
+                  <td>{exam.courseName}</td>
                   <td>{exam.type}</td>
                   <td>{exam.examDate}</td>
                   <td>{exam.startTime}</td>

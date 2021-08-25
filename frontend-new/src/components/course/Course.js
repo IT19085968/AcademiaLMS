@@ -29,19 +29,19 @@ class Course extends React.Component {
   render() {
     return (
       <div className="course">
-        <section class="home">
-          {/* <img class="image" src={img1} /> */}
+         <section class="home">
+          <img class="image" src={img1} />
           <div class="centered">
             <div class="hero-text text-white">
-              <h1>Get The Best Free Online Courses</h1>
-              <p>Learn from nothing to be something</p>
+              <h1 className="pic-back">Get The Best Free Online Courses</h1>
+              <p className="pic-back">Learn from nothing to be something</p>
             </div>
 
             <div class="row">
               <div class="col">
                 <input type="text" class="form-control" placeholder="Course" />
               </div>
-
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <div class="col">
                 <input
                   type="text"
@@ -49,13 +49,20 @@ class Course extends React.Component {
                   placeholder="Category"
                 />
               </div>
-
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <div class="col">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input class="btn btn" type="submit" value="Search" />
               </div>
             </div>
           </div>
-        </section>
+        </section> 
 
         <section class="course-section spad pb-0">
           <div class="course-warp">
@@ -84,7 +91,7 @@ class Course extends React.Component {
                   </div>
                   <div class="course-info">
                     <div class="course-text">
-                      <h5>Art & Crafts</h5>
+                      <h3>Art & Crafts</h3>
                       <p>Lorem ipsum dolor sit amet, consectetur</p>
                       <div class="students">120 Students</div>
                     </div>
@@ -104,8 +111,9 @@ class Course extends React.Component {
                     <img class="course-thumb set-bg" src={IT} />
                   </div>
                   <div class="course-info">
+                    <a href="/select-course" >
                     <div class="course-text">
-                      <h5>IT Development</h5>
+                      <h3>Learn Spring Boot</h3>
                       <p>Lorem ipsum dolor sit amet, consectetur</p>
                       <div class="students">120 Students</div>
                     </div>
@@ -118,8 +126,11 @@ class Course extends React.Component {
                         William Parker, <span>Developer</span>
                       </p>
                     </div>
+                    </a>
                   </div>
+                 
                 </div>
+              
               </div>
 
               <div class="mix col-lg-3 col-md-4 col-sm-6 web">
@@ -129,7 +140,7 @@ class Course extends React.Component {
                   </div>
                   <div class="course-info">
                     <div class="course-text">
-                      <h5>Graphic Design</h5>
+                      <h3>Graphic Design</h3>
                       <p>Lorem ipsum dolor sit amet, consectetur</p>
                       <div class="students">120 Students</div>
                     </div>
@@ -153,7 +164,7 @@ class Course extends React.Component {
                   </div>
                   <div class="course-info">
                     <div class="course-text">
-                      <h5>IT Development</h5>
+                      <h3>IT Development</h3>
                       <p>Lorem ipsum dolor sit amet, consectetur</p>
                       <div class="students">120 Students</div>
                     </div>
@@ -177,7 +188,7 @@ class Course extends React.Component {
                   </div>
                   <div class="course-info">
                     <div class="course-text">
-                      <h5>Python Program</h5>
+                      <h3>Python Program</h3>
                       <p>Lorem ipsum dolor sit amet, consectetur</p>
                       <div class="students">120 Students</div>
                     </div>
@@ -200,7 +211,7 @@ class Course extends React.Component {
                   </div>
                   <div class="course-info">
                     <div class="course-text">
-                      <h5>Socia Media</h5>
+                      <h3>Socia Media</h3>
                       <p>Lorem ipsum dolor sit amet, consectetur</p>
                       <div class="students">120 Students</div>
                     </div>
@@ -223,7 +234,7 @@ class Course extends React.Component {
                   </div>
                   <div class="course-info">
                     <div class="course-text">
-                      <h5>Learn SprinBoot</h5>
+                      <h3>Learn SprinBoot</h3>
                       <p>Lorem ipsum dolor sit amet, consectetur</p>
                       <div class="students">120 Students</div>
                     </div>
@@ -247,7 +258,7 @@ class Course extends React.Component {
                   </div>
                   <div class="course-info">
                     <div class="course-text">
-                      <h5>HTML 5</h5>
+                      <h3>HTML 5</h3>
                       <p>Lorem ipsum dolor sit amet, consectetur</p>
                       <div class="students">120 Students</div>
                     </div>
@@ -294,7 +305,10 @@ class Course extends React.Component {
           &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
           <a class="btn btn" href="/add-course" role="button">
             Add Course
           </a>

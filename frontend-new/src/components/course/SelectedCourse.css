@@ -1,0 +1,57 @@
+.course-header{
+    background-color: #364351;
+    color: white;
+}
+
+.learn-list{
+    border-style: solid;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+/* .split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  } */
+  
+  /* Control the left side */
+  .left {
+    /* border: solid 2px blue; */
+    margin-left: 50px;
+    margin-right: 500px;
+    min-height: 300px;
+  }
+  
+  /* Control the right side */
+  .right {
+    /* background-color: #0FF; */
+    border: solid 1px;
+    width: 480px;
+    position: absolute;
+    top: 750px;
+    min-height: 300px;
+    margin-left: 1020px;
+   margin-bottom: 100px;
+  }
+
+  .st-list{
+    margin-left: 90px;
+  }
+
+  .table-styles{
+    margin-left: 50px;
+  padding: 8px;
+  border-collapse: collapse;
+  width: 100%;
+  }
+
+  .table-styles th{
+    padding: 8px;
+    font-size: medium;
+    color: cornflowerblue;
+  }

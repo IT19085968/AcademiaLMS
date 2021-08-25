@@ -144,5 +144,9 @@ body{
   ::-moz-focus-inner {
     border: 0;
   }
+
+  .pic-back{
+    color: white;
+  }
   
   /* Resources1× 0.5× 0.25×Rerun */

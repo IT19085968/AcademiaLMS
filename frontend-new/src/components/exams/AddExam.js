@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Select from "react-select";
+import './AddExam.css'
 
 export default class AddExam extends Component {
   constructor(props) {
@@ -80,14 +81,16 @@ export default class AddExam extends Component {
       return { value: course.id, label: course.name };
     });
     return (
-      <div className="container">
+      <div >
+          <div id="registration-form">
+          <div class="fieldset">
         <br></br>
         <br></br>
-        <h3>Add New Exam</h3>
+        <legend>Add New Exam Here</legend>
 
         <form onSubmit={(e) => this.onSubmit(e)}>
-          <div className="mb-3">
-            <label htmlFor="Type" class="form-label">
+        <div class="row">
+            <label htmlFor="Type" >
               Exam Title
             </label>
             <input
@@ -101,7 +104,7 @@ export default class AddExam extends Component {
             />
           </div>
 
-          <div class="mb-3">
+          <div class="row">
             {/* <label>
               Select Course:
               <select value={this.state.value} onChange={this.selectedCourses}>
@@ -131,7 +134,7 @@ export default class AddExam extends Component {
             />
           </div>
 
-          <div class="mb-3">
+          <div class="row">
             <label for="number" class="form-label">
               Exam Date
             </label>
@@ -145,10 +148,10 @@ export default class AddExam extends Component {
             />
           </div>
 
-          <button type="submit" class="btn btn-primary">
-            Submit
-          </button>
+          <input type="submit" value="Submit" />
         </form>
+        </div>
+        </div>
       </div>
     );
   }

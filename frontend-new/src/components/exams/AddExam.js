@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Select from "react-select";
 import AddQuiz from "../addQuiz/addQuiz";
+import "./AddExam.css";
 
 export default class AddExam extends Component {
   constructor(props) {
@@ -83,29 +84,29 @@ export default class AddExam extends Component {
       return { value: course.id, label: course.name };
     });
     return (
-      <div className="container">
-        <br></br>
-        <br></br>
-        <h3>Add New Exam</h3>
+      <div>
+        <div id="registration-form">
+          <div class="fieldset">
+            <br></br>
+            <br></br>
+            <legend>Add New Exam Here</legend>
 
-        <form onSubmit={(e) => this.onSubmit(e)}>
-          <div className="mb-3">
-            <label htmlFor="Type" class="form-label">
-              Exam Title
-            </label>
-            <input
-              type="text"
-              class="form-control"
-              id="Type"
-              name="title"
-              value={this.state.title}
-              onChange={this.onChange}
-              aria-describedby="emailHelp"
-            />
-          </div>
+            <form onSubmit={(e) => this.onSubmit(e)}>
+              <div class="row">
+                <label htmlFor="Type">Exam Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Type"
+                  name="title"
+                  value={this.state.title}
+                  onChange={this.onChange}
+                  aria-describedby="emailHelp"
+                />
+              </div>
 
-          <div class="mb-3">
-            {/* <label>
+              <div class="row">
+                {/* <label>
               Select Course:
               <select value={this.state.value} onChange={this.selectedCourses}>
                 {this.state.courses.map((course) => (
@@ -113,7 +114,7 @@ export default class AddExam extends Component {
                 ))}
               </select>
             </label> */}
-            {/* <label>
+                {/* <label>
               Select Course:
               <select value={this.state.id} onChange={this.handleChange}>
                 {this.state.courses.map((course) => (
@@ -121,39 +122,39 @@ export default class AddExam extends Component {
                 ))}
               </select>
             </label> */}
-            <label htmlFor="courses">Courses</label>
-            <Select
-              name="form-field-name"
-              options={options}
-              onChange={this.handleChange}
-              clearable={this.state.clearable}
-              searchable={this.state.searchable}
-              value={this.state.selectedOption}
-              labelKey="name"
-              valueKey="id"
-            />
-          </div>
+                <label htmlFor="courses">Courses</label>
+                <Select
+                  name="form-field-name"
+                  options={options}
+                  onChange={this.handleChange}
+                  clearable={this.state.clearable}
+                  searchable={this.state.searchable}
+                  value={this.state.selectedOption}
+                  labelKey="name"
+                  valueKey="id"
+                />
+              </div>
 
-          <div class="mb-3">
-            <label for="number" class="form-label">
-              Exam Date
-            </label>
-            <input
-              type="text"
-              class="form-control"
-              id="number"
-              name="examDate"
-              value={this.state.examDate}
-              onChange={this.onChange}
-            />
-          </div>
+              <div class="row">
+                <label for="number" class="form-label">
+                  Exam Date
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="number"
+                  name="examDate"
+                  value={this.state.examDate}
+                  onChange={this.onChange}
+                />
+              </div>
 
-          <button type="submit" class="btn btn-primary">
-            Submit
-          </button>
-        </form>
-        <div className="col s6">
-          {this.state.examId ? <AddQuiz examId={this.state.examId} /> : ""}
+              <input type="submit" value="Submit" />
+            </form>
+            <div className="col s6">
+              {this.state.examId ? <AddQuiz examId={this.state.examId} /> : ""}
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./Exam.css";
+import ViewQuiz from "../viewQuiz/viewQuiz";
 
 class Exam extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Exam extends React.Component {
       type: "",
       id: "",
       title: "",
+      quizId: "",
     };
   }
 
@@ -23,6 +25,12 @@ class Exam extends React.Component {
         id: "",
         name: "",
       });
+    });
+  }
+
+  viewTheQuiz(quizId) {
+    this.setState({
+      quizId: "61279e68495de239a7eccaca",
     });
   }
 
@@ -73,11 +81,21 @@ class Exam extends React.Component {
                   <td>{exam.type}</td>
                   <td>{exam.examDate}</td>
                   <td>{exam.startTime}</td>
-                  <td></td>
+                  <td>
+                    <button
+                      onClick={(e) => this.viewTheQuiz(exam.quizId)}
+                      className="btn waves-effect waves-light"
+                    >
+                      View
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="col s6">
+          {this.state.quizId ? <ViewQuiz quizId={this.state.quizId} /> : ""}
         </div>
       </div>
     );

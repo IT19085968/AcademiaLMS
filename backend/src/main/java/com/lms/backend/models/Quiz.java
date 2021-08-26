@@ -16,5 +16,6 @@ import lombok.NoArgsConstructor;
 public class Quiz {
     @Id
     private String id;
+    private String examId;
     private List<Question> questions;
 }

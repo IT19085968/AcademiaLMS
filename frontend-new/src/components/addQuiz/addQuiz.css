@@ -1,0 +1,20 @@
+.quizContent {
+  display: table;
+  max-width: 800px;
+  /* width: 100%; */
+  margin: 0 auto;
+  background-color: rgb(187, 236, 220);
+  padding: 30px;
+}
+
+.quizContent h3 {
+  text-align: center;
+}
+
+.quizContent input {
+  max-width: 600px;
+}
+
+.quizContent form button {
+  text-align: right;
+}

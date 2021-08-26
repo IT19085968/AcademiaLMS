@@ -37,8 +37,8 @@ public class ExamController {
     }
 
     @PostMapping("/")
-    public void addCourse(@RequestBody Exam exam) {
-        examService.addNewExam(exam);
+    public Exam addCourse(@RequestBody Exam exam) {
+        return examService.addNewExam(exam);
     }
 
 }

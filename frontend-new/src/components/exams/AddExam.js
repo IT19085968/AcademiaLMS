@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Select from "react-select";
+import AddQuiz from "../addQuiz/addQuiz";
 
 export default class AddExam extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ export default class AddExam extends Component {
       value: "",
       selectedOption: "",
       clearable: true,
+      examId: "",
     };
   }
 
@@ -67,6 +69,7 @@ export default class AddExam extends Component {
     axios
       .post("http://localhost:8080/exams/", Exam)
       .then((response) => {
+        this.setState({ examId: response.data.id });
         alert("Data successfully inserted");
       })
       .catch((error) => {
@@ -149,6 +152,9 @@ export default class AddExam extends Component {
             Submit
           </button>
         </form>
+        <div className="col s6">
+          {this.state.examId ? <AddQuiz examId={this.state.examId} /> : ""}
+        </div>
       </div>
     );
   }

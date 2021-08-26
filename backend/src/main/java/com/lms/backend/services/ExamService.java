@@ -27,8 +27,8 @@ public class ExamService {
 
     }
 
-    public void addNewExam(Exam exam) {
-        examRepository.save(exam);
+    public Exam addNewExam(Exam exam) {
+        return examRepository.save(exam);
     }
 
 }

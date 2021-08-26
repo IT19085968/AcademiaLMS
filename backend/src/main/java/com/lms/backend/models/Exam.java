@@ -23,6 +23,7 @@ public class Exam {
     private String endTime;
     private String instructions;
     private String type;
+    private String quizId;
 
     // private String[] LessonIds;
 

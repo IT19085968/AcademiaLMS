@@ -20,6 +20,7 @@ import Exam from "./components/exams/Exam";
 import AddExam from "./components/exams/AddExam";
 import quizMain from "./components/quizMain/quizMain";
 import SelectedCourse from "./components/course/SelectedCourse";
+import AddQuiz from "./components/addQuiz/addQuiz";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/exams" component={Exam} />
             <Route path="/add-exam" component={AddExam} />
             <Route path="/quizMain" component={quizMain} />
+            <Route path="/add-quiz" component={AddQuiz} />
 
             <Route path="/one" component={ApprovedUsers} />
             <Route path="/two" component={PendingUsers} />

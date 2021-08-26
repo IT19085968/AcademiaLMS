@@ -2,6 +2,7 @@ package com.lms.backend.models;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Document
 @Data
@@ -31,8 +33,8 @@ public class Course {
     @Size(min = 2, max = 50 , message = "The description should have at least 2 characters")
     private String description;
 
-    // @DBRef
-    // private List<Lecturer> lecturers;
+     @DBRef
+     private List<Lecturer> lecturers;
 
     // private List<String> contentIds;
     // private String categoryId;

@@ -47,10 +47,10 @@ body{
     text-shadow:0 1px white;
     font-weight:bold;
   }
-  /* all */
+
   ::-webkit-input-placeholder { text-shadow:1px 1px 1px white; font-weight:bold; }
-  ::-moz-placeholder { text-shadow:0 1px 1px white; font-weight:bold; } /* firefox 19+ */
-  :-ms-input-placeholder { text-shadow:0 1px 1px white; font-weight:bold; } /* ie */
+  ::-moz-placeholder { text-shadow:0 1px 1px white; font-weight:bold; } 
+  :-ms-input-placeholder { text-shadow:0 1px 1px white; font-weight:bold; } 
   #registration-form input[type=text] {
     padding: 15px 20px;
     border-radius: 1px;

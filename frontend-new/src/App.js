@@ -21,6 +21,8 @@ import AddExam from "./components/exams/AddExam";
 import quizMain from "./components/quizMain/quizMain";
 import SelectedCourse from "./components/course/SelectedCourse";
 import AddQuiz from "./components/addQuiz/addQuiz";
+import AddSyllabus from "./components/syllabus/AddSyllabus";
+import Syllabus from "./components/syllabus/Syllabus";
 
 function App() {
   return (
@@ -50,6 +52,10 @@ function App() {
             <Route path="/one" component={ApprovedUsers} />
             <Route path="/two" component={PendingUsers} />
             <Route path="/addUsers" component={AddUsers} />
+
+            <Route path="/syllabus" component={Syllabus} />
+            <Route path="/add-syllabus" component={AddSyllabus} />
+
           </Switch>
           <Footer />
         </section>

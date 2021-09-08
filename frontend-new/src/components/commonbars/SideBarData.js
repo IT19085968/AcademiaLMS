@@ -15,7 +15,7 @@ export const SideBarData = [
   },
   {
     title: "Instructors",
-    path: "/addInstructor",
+    path: "/instructorList",
     icon: <RiIcons.RiDashboardFill />,
     cName: "nav-text",
   },

@@ -14,8 +14,8 @@ export const SideBarData = [
     cName: "nav-text",
   },
   {
-    title: "Dashboard",
-    path: "/dashboard",
+    title: "Instructors",
+    path: "/instructorList",
     icon: <RiIcons.RiDashboardFill />,
     cName: "nav-text",
   },

@@ -23,6 +23,8 @@ import SelectedCourse from "./components/course/SelectedCourse";
 import AddQuiz from "./components/addQuiz/addQuiz";
 import AddSyllabus from "./components/syllabus/AddSyllabus";
 import Syllabus from "./components/syllabus/Syllabus";
+import AddInstructor from "./components/instructor/AddInstructor";
+import InstructorList from "./components/instructor/Instructor";
 
 function App() {
   return (
@@ -55,6 +57,9 @@ function App() {
 
             <Route path="/syllabus" component={Syllabus} />
             <Route path="/add-syllabus" component={AddSyllabus} />
+            <Route path="/addInstructor" component={AddInstructor} />
+            <Route path="/instructorList" component={InstructorList} />
+
 
           </Switch>
           <Footer />

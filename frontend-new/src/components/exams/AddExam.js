@@ -151,10 +151,10 @@ export default class AddExam extends Component {
 
               <input type="submit" value="Submit" />
             </form>
-            <div className="col s6">
-              {this.state.examId ? <AddQuiz examId={this.state.examId} /> : ""}
-            </div>
           </div>
+        </div>
+        <div className="col s6">
+          {this.state.examId ? <AddQuiz examId={this.state.examId} /> : ""}
         </div>
       </div>
     );

@@ -3,23 +3,19 @@ package com.lms.backend.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.lms.backend.dto.CategorySuggestionResponse;
+import com.lms.backend.dto.*;
 // import com.lms.backend.dto.CourseSuggestionResponse;
 import com.lms.backend.models.Category;
 // import com.lms.backend.models.Course;
+import com.lms.backend.models.Course;
 import com.lms.backend.services.CategoryService;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/categories")
@@ -55,9 +51,22 @@ public class CategoryController {
         return categoryService.getCategoryById(id);
     }
 
+//    @PostMapping("/")
+//    public void addCategory(@RequestBody Category category) {
+//        categoryService.addNewCategory(category);
+//    }
+
     @PostMapping("/")
-    public void addCategory(@RequestBody Category category) {
-        categoryService.addNewCategory(category);
+    public ResponseEntity<Object> saveCategory(@Validated @RequestBody CategoryCreateRequest request)throws Exception{
+        Category category = modelMapper.map(request,Category.class);
+        Category saveCategory = categoryService.addNewCategory(category);
+        CategoryCreateResponse categoryCreateResponse = modelMapper.map(saveCategory, CategoryCreateResponse.class);
+        return new ResponseEntity<>(categoryCreateResponse, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCategory(@PathVariable("id")String id){
+        categoryService.deleteCategory(id);
     }
 
 }

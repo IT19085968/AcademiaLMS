@@ -37,6 +37,10 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "lecturer_id", referencedColumnName = "id"))
     private Set<Lecturer> lecturers;
 
+
+    @ManyToMany(mappedBy = "category")
+    Set<Category> categories;
+
     // private List<String> contentIds;
     // private String categoryId;
     // private List<String> lecturerIds;

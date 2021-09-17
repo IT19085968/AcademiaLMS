@@ -23,7 +23,7 @@ public class CourseCreateRequest {
     private Set<Lecturer> lecturers;
 
     @Data
-    private static class Lecturer {
+    static class Lecturer {
         private String id;
     }
 }

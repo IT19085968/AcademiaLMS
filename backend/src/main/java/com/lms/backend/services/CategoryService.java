@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import com.lms.backend.models.Category;
 import com.lms.backend.models.Course;
-import com.lms.backend.models.Lecturer;
 import com.lms.backend.repositories.CategoryRepository;
 
 import com.lms.backend.repositories.CourseRepository;
@@ -47,6 +46,8 @@ public class CategoryService {
 
         category.setCourses(new HashSet<>(list));
 
+
+
         return  categoryRepository.save(category);
     }
 
@@ -59,4 +60,16 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
+
+    public Category update(Category category) throws Exception {
+        Category categoryDb = categoryRepository.findById(category.getId()).orElseThrow(() -> {
+            throw new IllegalStateException("Category with id " + category.getId() + " does not exists");
+        });
+
+        categoryDb.setName(category.getName());
+        categoryDb.setDescription(category.getDescription());
+        categoryDb.setCourses(categoryDb.getCourses());
+
+        return categoryRepository.save(categoryDb);
+    }
 }

@@ -7,6 +7,7 @@ import com.lms.backend.dto.CourseCreateRequest;
 import com.lms.backend.dto.CourseCreateResponse;
 import com.lms.backend.dto.CourseSuggestionResponse;
 // import com.lms.backend.dto.LecturerSuggestionResponse;
+import com.lms.backend.dto.CourseUpdateResponse;
 import com.lms.backend.models.Course;
 // import com.lms.backend.models.Lecturer;
 import com.lms.backend.services.CourseService;
@@ -64,5 +65,15 @@ public class CourseController {
     public void deleteCourse(@PathVariable("id")String id){
         courseService.deleteCourse(id);
     }
+
+    @PutMapping("/{id}")
+    private ResponseEntity<CourseUpdateResponse> update(@PathVariable String id, @Validated @RequestBody CourseCreateRequest request) throws Exception{
+        Course course = modelMapper.map(request, Course.class);
+        course.setId(id);
+        Course courseUpdate = courseService.update(course);
+        CourseUpdateResponse courseUpdateResponse = modelMapper.map(courseUpdate, CourseUpdateResponse.class);
+        return new ResponseEntity<>(courseUpdateResponse, HttpStatus.OK);
+    }
+
 
 }

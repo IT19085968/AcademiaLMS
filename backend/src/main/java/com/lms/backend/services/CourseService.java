@@ -57,4 +57,18 @@ public class CourseService {
         courseRepository.deleteById(id);
     }
 
+    public Course update(Course course) throws Exception{
+        Course courseDb = courseRepository.findById(course.getId()).orElseThrow(()->{
+            throw new IllegalStateException("Course with id "+course.getId()+" does not exists");
+        });
+
+        courseDb.setName(course.getName());
+        courseDb.setDescription(course.getDescription());
+        courseDb.setDuration(course.getDuration());
+        courseDb.setLecturers(course.getLecturers());
+
+        return courseRepository.save(courseDb);
+    }
+
+
 }

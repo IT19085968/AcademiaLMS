@@ -7,21 +7,23 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Data
-public class CategoryCreateRequest {
+public class CourseUpdateRequest {
 
     @NotNull
     @Size(min = 2, max = 50 , message = "The name should have at least 2 characters")
     private String name;
 
     @NotNull
-    @Size(min = 2, max = 50 , message = "The name should have at least 2 characters")
+    private int duration;
+
+    @NotNull
+    @Size(min = 2, max = 50 , message = "The description should have at least 2 characters")
     private String description;
 
-    private Set<Course> courses;
+    private Set<CourseCreateRequest.Lecturer> lecturers;
 
     @Data
-    static class Course {
+    private static class Lecturer {
         private String id;
     }
-
 }

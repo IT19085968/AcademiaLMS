@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Data
-public class CategoryCreateRequest {
+public class CategoryUpdateRequest {
 
     @NotNull
     @Size(min = 2, max = 50 , message = "The name should have at least 2 characters")
@@ -17,11 +17,10 @@ public class CategoryCreateRequest {
     @Size(min = 2, max = 50 , message = "The name should have at least 2 characters")
     private String description;
 
-    private Set<Course> courses;
+    private Set<CategoryCreateRequest.Course> courses;
 
     @Data
-    static class Course {
+    private static class Course {
         private String id;
     }
-
 }

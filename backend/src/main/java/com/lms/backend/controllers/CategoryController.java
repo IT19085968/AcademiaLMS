@@ -69,4 +69,14 @@ public class CategoryController {
         categoryService.deleteCategory(id);
     }
 
+
+    @PutMapping("/{id}")
+    private ResponseEntity<CategoryUpdateResponse> update(@PathVariable String id, @Validated @RequestBody CategoryUpdateRequest request) throws Exception{
+        Category category = modelMapper.map(request, Category.class);
+        category.setId(id);
+        Category categoryUpdate = categoryService.update(category);
+        CategoryUpdateResponse categoryUpdateResponse = modelMapper.map(categoryUpdate, CategoryUpdateResponse.class);
+        return new ResponseEntity<>(categoryUpdateResponse, HttpStatus.OK);
+    }
+
 }

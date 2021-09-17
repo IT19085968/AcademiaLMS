@@ -18,8 +18,10 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+
 public class Course {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
 

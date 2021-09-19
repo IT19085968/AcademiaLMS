@@ -26,6 +26,18 @@ class Course extends React.Component {
     });
   }
 
+  deleteCourse = (id) =>{
+    axios.delete("http://localhost:8080/courses/" +id)
+    .then(responce =>{
+      if(responce.data != null){
+          alert("Course deleted successfully");
+          this.setState({
+            courses: this.state.courses.filter(course => course.id != id)
+          });
+      }
+    });
+  }
+
   render() {
     return (
       <div className="course">
@@ -281,8 +293,42 @@ class Course extends React.Component {
         <br></br>
         <br></br>
         <br></br>
+
         <div className="container">
-          {this.state.courses.length > 0 &&
+          <table className="table table-bordered tableClass">
+            <thead>
+              <tr>
+                <th scope="col">Course Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Duration</th>
+                {/* <th scope="col">Instructors</th> */}
+              </tr>
+            </thead>
+
+            <tbody>
+              {this.state.courses.map((course) => (
+                <tr key={course.id}>
+                  <td>{course.name}</td>
+                  <td>{course.description}</td>
+                  <td>{course.duration}</td>
+                  
+
+                  <td> <a class="btn btn" href="/edit-course" role="button">
+                  Edit Course
+                  </a></td>
+
+                  <td> <a class="btn btn" href="/delete-course" role="button"   onClick={this.deleteCourse.bind(this, course.id)}>
+                  Delete Course
+                  </a> </td>
+                  
+                </tr>
+              ))}
+            </tbody>
+
+          </table>
+        </div>
+        
+          {/* {this.state.courses.length > 0 &&
             this.state.courses.map((item, index) => (
               <div key={index} className="card mb-3">
                 <div className="p-3">
@@ -292,7 +338,7 @@ class Course extends React.Component {
                   <br></br>
                 </div>
               </div>
-            ))}
+            ))} */}
           <br></br>
           <br></br>
           <br></br>
@@ -317,7 +363,7 @@ class Course extends React.Component {
             Edit Course
           </a>
         </div>
-      </div>
+      
     );
   }
 }

@@ -3,6 +3,8 @@ import axios from "axios";
 import "../buttons/Buttons.css";
 import img1 from "../images/bg.jpg";
 import "./AddCategory.css"
+// import "./CategoryService";
+
 
 class Category extends React.Component {
   constructor(props) {
@@ -10,6 +12,8 @@ class Category extends React.Component {
     this.state = {
       categories: [],
     };
+    // this.deleteCategory = this.deleteCategory.bind(this);
+    
   }
 
   componentDidMount() {
@@ -19,6 +23,23 @@ class Category extends React.Component {
         this.setState({ categories: responce.data });
       });
   }
+
+//   navigateCoursePage(e, id){
+//     window.location=`/${id}`
+// }
+
+deleteCategory = (id) =>{
+  axios.delete("http://localhost:8080/categories/" +id)
+  .then(responce =>{
+    if(responce.data != null){
+        alert("Category deleted successfully");
+        this.setState({
+          categories: this.state.categories.filter(category => category.id != id)
+        });
+    }
+  });
+}
+
 
   render() {
     return (
@@ -62,20 +83,33 @@ class Category extends React.Component {
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <div className="container">
-          <table>
-          {this.state.categories.length > 0 &&
-            this.state.categories.map((item, index) => (
-              <div key={index} className="card mb-3">
-                <div className="p-3">
-                <tr><a href="#"><td><h3>{item.name}</h3></td> </a></tr>
-                  {/* <tr><th><h5>Description : {item.description}</h5></th></tr> */}
-                  <br></br>
-                </div>
-              </div>
-            ))}
-            </table>
-        </div>
+
+<div className="container">
+
+<table className="table table-bordered tableClass">
+            <tbody>
+              {this.state.categories.map((category) => (
+                //  <div className="p-3" onClick={e=>this.navigateCoursePage(e, item._id)}>
+                <tr key={category.id}>
+                  <td><h3>{category.name}</h3></td>
+                
+                 <td> <a class="btn btn" href="/edit-category" role="button">
+            Edit Category
+          </a></td>
+
+         <td> <a class="btn btn" href="/delete-category" role="button"   onClick={this.deleteCategory.bind(this, category.id)}>
+        
+            Delete Category
+          </a> </td>
+
+                </tr>
+                // </div>
+              ))}
+            </tbody>
+
+          </table>
+          </div>
+       
 
         <div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -100,9 +134,9 @@ class Category extends React.Component {
             Add Category
           </a>
           &nbsp;&nbsp;&nbsp;
-          <a class="btn btn" href="/edit-category" role="button">
+          {/* <a class="btn btn" href="/edit-category" role="button">
             Edit Category
-          </a>
+          </a> */}
         </div>
       </div>
     );

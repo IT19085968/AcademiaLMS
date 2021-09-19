@@ -39,6 +39,7 @@ function App() {
             <Route path="/add-category" component={AddCategory} />
             <Route path="/edit-category" component={EditCategory} />
             <Route path="//edit-category" component={EditCategory} />
+            {/* <Route path="/delete-category"  */}
             <Route path="/select-course" component={SelectedCourse} />
             <Route path="/" exact component={Home} />
             <Route path="/login" component={Login} />

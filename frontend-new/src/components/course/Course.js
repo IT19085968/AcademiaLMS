@@ -11,6 +11,14 @@ import sm from "../images/6.jpg";
 import spring from "../images/7.jpg";
 import html5 from "../images/8.jpg";
 import "./Course.css";
+import Pdf from 'react-to-pdf';
+
+const ref = React.createRef();
+const options = {
+    orientation: 'landscape',
+    unit: 'in',
+    format: [9.5,8]
+};
 
 class Course extends React.Component {
   constructor(props) {
@@ -295,6 +303,7 @@ class Course extends React.Component {
         <br></br>
 
         <div className="container">
+        <div ref={ref}>
           <table className="table table-bordered tableClass">
             <thead>
               <tr>
@@ -326,6 +335,7 @@ class Course extends React.Component {
             </tbody>
 
           </table>
+          </div>
         </div>
         
           {/* {this.state.courses.length > 0 &&
@@ -359,9 +369,13 @@ class Course extends React.Component {
             Add Course
           </a>
           &nbsp;&nbsp;&nbsp;
-          <a class="btn btn" href="/edit-category" role="button">
+          {/* <a class="btn btn" href="/edit-category" role="button">
             Edit Course
-          </a>
+          </a> */}
+
+<Pdf targetRef={ref} filename="CourseList.pdf" options={options} >
+                        {({ toPdf }) =>  <input type="button" value="Export" onClick={toPdf} className="btn btn-info"/>}
+                    </Pdf>
         </div>
       
     );

@@ -3,11 +3,13 @@ import axios from "axios";
 import Select from "react-select";
 import "./AddCategory.css";
 
+
 class AddCategory extends React.Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    
     this.state = {
       gname: "",
       gdescription: "",
@@ -17,21 +19,57 @@ class AddCategory extends React.Component {
     };
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:8080/courses/suggestion').then((response) => {
-      this.setState({ courses: response.data }, () => {
-        let data = [];
-        this.state.courses.map((item, index) => {
-          let course = {
-            value: item._id,
-            label: item.name,
-          };
-          data.push(course);
-        });
-        this.setState({ options: data });
-      });
+  initialState = {
+    id:"",
+    gname: "",
+    gdescription: "",
+    courses: [],
+    options: [],
+    selectedCourses: [],
+  }
+
+  componentDidMount(){
+    const id = +this.props.match.params.id;
+    if(id){
+      this.findCategoryById(id);
+    }
+  }
+
+ 
+
+  findCategoryById = (id) =>{
+    axios.get("http://localhost:8080/categories/" +id)
+    .then(response =>{
+      if(response.data != null){
+        this.setState({
+          id: response.data.id,
+          name: response.data.gname,
+          description: response.data.gdescription,
+          courses: response.data.selectedCourses
+        })
+      }
+
+    }).catch((error)=>{
+      console.error("Error " +error)
     });
   }
+
+
+  // componentDidMount() {
+  //   axios.get('http://localhost:8080/courses/suggestion').then((response) => {
+  //     this.setState({ courses: response.data }, () => {
+  //       let data = [];
+  //       this.state.courses.map((item, index) => {
+  //         let course = {
+  //           value: item._id,
+  //           label: item.name,
+  //         };
+  //         data.push(course);
+  //       });
+  //       this.setState({ options: data });
+  //     });
+  //   });
+  // }
 
 
 //   componentDidMount(){
@@ -78,6 +116,10 @@ class AddCategory extends React.Component {
       });
   }
 
+
+  
+
+
   render() {
     return (
       <div>
@@ -123,7 +165,8 @@ class AddCategory extends React.Component {
                 />
               </div>
 
-              <input type="submit" value="Add Category" />
+              <input type="submit" value="Add Category"  />
+              <input type="submit" value="Save Changes" />
             </form>
           </div>
         </div>

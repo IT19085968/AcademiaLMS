@@ -1,9 +1,9 @@
-import React from "react";
+import React , {useState} from "react";
 import axios from "axios";
-//import "./Exam.css";
-//import ViewQuiz from "../viewQuiz/viewQuiz";
 
+//var [searchTerm, setsearchTerm] = useState("");
 class InstructorList extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,6 +13,8 @@ class InstructorList extends React.Component {
       email: "",
       contactNumber: "",
       id: "",
+      //searchTerm: 0,
+      //setsearchTerm:0 
     };
   }
 
@@ -26,11 +28,18 @@ class InstructorList extends React.Component {
     });
   }
 
-//   viewTheQuiz(quizId) {
-//     this.setState({
-//       quizId: "61279e68495de239a7eccaca",
-//     });
-//   }
+  deleteInstructor= (id) =>{
+    axios.delete("http://localhost:8080/instructors/" +id)
+    .then(responce =>{
+      if(responce.data != null){
+          alert("Instructor deleted successfully");
+          this.setState({
+            instructors: this.state.instructors.filter(instructor => instructor.id != id)
+          });
+      }
+    });
+  }
+
 
   render() {
     return (
@@ -52,7 +61,9 @@ class InstructorList extends React.Component {
         <div className="container">
           <div class="search-container">
             <form action="/action_page.php">
-              <input type="text" placeholder="Search.." name="search" />
+              <input type="text" placeholder="Search.." name="search" 
+              // onChange={(e) => {setsearchTerm(e.target.value);}}
+               />
               <button type="submit">
                 <i class="fa fa-search"></i>
               </button>
@@ -68,16 +79,45 @@ class InstructorList extends React.Component {
                 <th scope="col">Email</th>
                 <th scope="col">Contact Number</th>
                 <th scope="col">Courses</th>
+                <th scope="col">Options</th>
               </tr>
             </thead>
 
             <tbody>
-              {this.state.instructors.map((instructor) => (
+              {this.state.instructors
+              // .filter(val=>{
+              //   if(searchTerm === ''){
+              //     return val;
+              //   }else if(
+              //      val.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+              //   ){
+              //     return val;
+              //   }
+              // })
+              .map((instructor) => (
                 <tr key={instructor.id}>
                   <td>{instructor.name}</td>
                   <td>{instructor.email}</td>
                   <td>{instructor.contactNumber}</td>
-                  <td>{instructor.Courses}</td>
+                  <td>{instructor.courses}</td>
+                  <td>
+                  <button
+                      // onClick={(e) => this.viewTheQuiz(exam.quizId)}
+                      className="btn waves-effect waves-light"  
+                      href="/edit-instructor"  
+                      
+                    >
+                      Edit
+                    </button>
+                    <button
+                      // onClick={(e) => this.viewTheQuiz(exam.quizId)}
+                      className="btn waves-effect waves-light"
+                      href="/delete-instructor"  
+                      onClick={this.deleteInstructor.bind(this, instructor.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                   
                 </tr>
               ))}

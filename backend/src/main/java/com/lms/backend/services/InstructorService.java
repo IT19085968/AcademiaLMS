@@ -29,4 +29,14 @@ public class InstructorService {
     public Instructor addNewInstructor(Instructor instructor) {
         return instructorRepository.save(instructor);
     }
+
+    public void deleteInstructor(String id){
+        boolean exists= instructorRepository.existsById(id);
+        if(!exists){
+            throw  new IllegalStateException("Instructor with id "+id+" does not exists");
+        }
+
+        instructorRepository.deleteById(id);
+    }
+
 }

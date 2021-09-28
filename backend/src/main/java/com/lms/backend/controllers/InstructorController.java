@@ -33,4 +33,9 @@ public class InstructorController {
     public Instructor addInstructor(@RequestBody Instructor instructor) {
         return instructorService.addNewInstructor(instructor);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteInstructor(@PathVariable("id")String id){
+        instructorService.deleteInstructor(id);
+    }
 }

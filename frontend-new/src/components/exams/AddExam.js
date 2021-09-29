@@ -154,7 +154,17 @@ export default class AddExam extends Component {
           </div>
         </div>
         <div className="col s6">
-          {this.state.examId ? <AddQuiz examId={this.state.examId} /> : ""}
+          {this.state.examId ? (
+            <AddQuiz
+              examId={this.state.examId}
+              title={this.state.title}
+              courseId={this.state.courseId}
+              courseName={this.state.courseName}
+              examDate={this.state.examDate}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );

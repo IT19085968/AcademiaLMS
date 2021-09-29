@@ -39,31 +39,31 @@ class ViewQuiz extends React.Component {
   }
 
   componentWillMount() {
-    axios
-      .get("http://localhost:8080/quiz/61279e68495de239a7eccaca")
-      .then((res) => {
-        this.setState({
-          questions: res.data.questions,
-          question1: res.data.questions[0].question,
-          firstAnswers: res.data.questions[0].answers,
-          answers1: res.data.questions[0].answers[0],
-          answers2: res.data.questions[0].answers[1],
-          answers3: res.data.questions[0].answers[2],
-          correctAnswer1: res.data.questions[0].correctAnswer,
-          question2: res.data.questions[1].question,
-          secondAnswers: res.data.questions[1].answers,
-          answers4: res.data.questions[1].answers[0],
-          answers5: res.data.questions[1].answers[1],
-          answers6: res.data.questions[1].answers[2],
-          correctAnswer2: res.data.questions[1].correctAnswer,
-          question3: res.data.questions[2].question,
-          thirdAnswers: res.data.questions[2].answers,
-          answers7: res.data.questions[2].answers[0],
-          answers8: res.data.questions[2].answers[1],
-          answers9: res.data.questions[2].answers[2],
-          correctAnswer3: res.data.questions[2].correctAnswer,
-        });
+    let { quizId } = this.props;
+    // .get("http://localhost:8080/quiz/61279e68495de239a7eccaca")
+    axios.get("http://localhost:8080/quiz/" + quizId).then((res) => {
+      this.setState({
+        questions: res.data.questions,
+        question1: res.data.questions[0].question,
+        firstAnswers: res.data.questions[0].answers,
+        answers1: res.data.questions[0].answers[0],
+        answers2: res.data.questions[0].answers[1],
+        answers3: res.data.questions[0].answers[2],
+        correctAnswer1: res.data.questions[0].correctAnswer,
+        question2: res.data.questions[1].question,
+        secondAnswers: res.data.questions[1].answers,
+        answers4: res.data.questions[1].answers[0],
+        answers5: res.data.questions[1].answers[1],
+        answers6: res.data.questions[1].answers[2],
+        correctAnswer2: res.data.questions[1].correctAnswer,
+        question3: res.data.questions[2].question,
+        thirdAnswers: res.data.questions[2].answers,
+        answers7: res.data.questions[2].answers[0],
+        answers8: res.data.questions[2].answers[1],
+        answers9: res.data.questions[2].answers[2],
+        correctAnswer3: res.data.questions[2].correctAnswer,
       });
+    });
   }
 
   render() {

@@ -27,8 +27,8 @@ public class QuizService {
 
     }
 
-    public void addNewQuiz(Quiz quiz) {
-        quizRepository.save(quiz);
+    public Quiz addNewQuiz(Quiz quiz) {
+        return quizRepository.save(quiz);
     }
 
 }

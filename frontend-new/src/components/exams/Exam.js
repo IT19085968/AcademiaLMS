@@ -30,8 +30,13 @@ class Exam extends React.Component {
 
   viewTheQuiz(quizId) {
     this.setState({
-      quizId: "61279e68495de239a7eccaca",
+      // quizId: "61279e68495de239a7eccaca",
+      quizId: quizId,
     });
+
+    let quizn = {
+      quizId: this.state.quizId,
+    };
   }
 
   render() {

@@ -5,9 +5,12 @@ class AddQuiz extends React.Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
     // this.onSubmit = this.onSubmit.bind(this);
     // this.onChangeProposalID = this.onChangeProposalID.bind(this);
     this.state = {
+      exam: [],
+      quizID: "",
       examId: "",
       question1: "",
       question2: "",
@@ -24,11 +27,84 @@ class AddQuiz extends React.Component {
       correctAnswer1: "",
       correctAnswer2: "",
       correctAnswer3: "",
+
+      title: "",
+      courseId: "",
+      courseName: "",
+      categoryId: "",
+      examDate: "",
+      startTime: "",
+      endTime: "",
+      instructions: "",
+      type: "",
+    };
+  }
+
+  componentWillMount() {
+    const { examId } = this.props;
+    const { title } = this.props;
+    const { courseId } = this.props;
+    const { courseName } = this.props;
+    const { examDate } = this.props;
+    this.setState({
+      examId: examId,
+      title: title,
+      courseId: courseId,
+      courseName: courseName,
+      examDate: examDate,
+    });
+    // axios.get("http://localhost:8080/exams/" + examId).then((res) => {
+    //   this.setState({
+    //     title: res.data.title,
+    //     courseId: res.data.courseId,
+    //     courseName: res.data.courseName,
+    //     // categoryId: res.data.categoryId,
+    //     examDate: res.data.examDate,
+    //     // startTime: res.data.startTime,
+    //     // endTime: res.data.endTime,
+    //     // instructions: res.data.instructions,
+    //     // type: res.data.type,
+    //   });
+    //   console.log("res", res);
+    // });
+
+    let examOne = {
+      title: this.state.title,
     };
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onClick(e) {
+    e.preventDefault();
+    let examNew = {
+      id: this.state.examId,
+      title: this.state.title,
+      courseId: this.state.courseId,
+      quizId: this.state.quizID,
+      courseName: this.state.courseName,
+      examDate: this.state.examDate,
+
+      categoryId: null,
+      examDate: null,
+      startTime: null,
+      endTime: null,
+      instructions: null,
+      type: null,
+    };
+
+    axios
+      .put("http://localhost:8080/exams/", examNew)
+      .then((response) => {
+        // this.setState({ examId: response.data.id });
+        alert("Data successfully inserted");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+      });
   }
 
   //   onChangeProposalID(e) {
@@ -78,6 +154,8 @@ class AddQuiz extends React.Component {
     axios
       .post("http://localhost:8080/quiz/", quizNew)
       .then((response) => {
+        this.setState({ quizID: response.data.id });
+        console.log(response.data.id);
         alert("Data successfully inserted");
       })
       .catch((error) => {
@@ -307,6 +385,9 @@ class AddQuiz extends React.Component {
 
           <button type="submit" class="btn btn-primary">
             Submit
+          </button>
+          <button type="button" class="btn btn-primary" onClick={this.onClick}>
+            Confirm
           </button>
         </form>
       </div>

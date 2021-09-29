@@ -1,40 +1,47 @@
 package com.lms.backend.models;
 
+import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Set;
 
 @Document
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+
 public class Course {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @NotNull
-    @Size(min = 2, max = 50 , message = "The name should have at least 2 characters")
+
     private String name;
 
-    @NotNull
-    @NotEmpty(message = "Duration cannot be empty")
+
     private int duration;
 
-    @NotNull
-    @Size(min = 2, max = 50 , message = "The description should have at least 2 characters")
+
     private String description;
 
-     @DBRef
-     private List<Lecturer> lecturers;
+    @ManyToMany
+    @JoinTable(name = "lecturer-course",
+            joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "lecturer_id", referencedColumnName = "id"))
+    private Set<Lecturer> lecturers;
+
+
+    @ManyToMany(mappedBy = "category")
+    Set<Category> categories;
 
     // private List<String> contentIds;
     // private String categoryId;

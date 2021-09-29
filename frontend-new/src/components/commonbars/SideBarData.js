@@ -14,8 +14,8 @@ export const SideBarData = [
     cName: "nav-text",
   },
   {
-    title: "Dashboard",
-    path: "/dashboard",
+    title: "Instructors",
+    path: "/instructorList",
     icon: <RiIcons.RiDashboardFill />,
     cName: "nav-text",
   },
@@ -61,6 +61,12 @@ export const SideBarData = [
   {
     title: "Exams",
     path: "/exams",
+    icon: <BsIcons.BsNewspaper />,
+    cName: "nav-text",
+  },
+  {
+    title: "Syllabus",
+    path: "/syllabus",
     icon: <BsIcons.BsNewspaper />,
     cName: "nav-text",
   },

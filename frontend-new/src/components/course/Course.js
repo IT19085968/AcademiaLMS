@@ -11,6 +11,14 @@ import sm from "../images/6.jpg";
 import spring from "../images/7.jpg";
 import html5 from "../images/8.jpg";
 import "./Course.css";
+import Pdf from 'react-to-pdf';
+
+const ref = React.createRef();
+const options = {
+    orientation: 'landscape',
+    unit: 'in',
+    format: [9.5,8]
+};
 
 class Course extends React.Component {
   constructor(props) {
@@ -23,6 +31,18 @@ class Course extends React.Component {
   componentDidMount() {
     axios.get("http://localhost:8080/courses/suggestion").then((responce) => {
       this.setState({ courses: responce.data });
+    });
+  }
+
+  deleteCourse = (id) =>{
+    axios.delete("http://localhost:8080/courses/" +id)
+    .then(responce =>{
+      if(responce.data != null){
+          alert("Course deleted successfully");
+          this.setState({
+            courses: this.state.courses.filter(course => course.id != id)
+          });
+      }
     });
   }
 
@@ -281,8 +301,44 @@ class Course extends React.Component {
         <br></br>
         <br></br>
         <br></br>
+
         <div className="container">
-          {this.state.courses.length > 0 &&
+        <div ref={ref}>
+          <table className="table table-bordered tableClass">
+            <thead>
+              <tr>
+                <th scope="col">Course Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Duration</th>
+                {/* <th scope="col">Instructors</th> */}
+              </tr>
+            </thead>
+
+            <tbody>
+              {this.state.courses.map((course) => (
+                <tr key={course.id}>
+                  <td>{course.name}</td>
+                  <td>{course.description}</td>
+                  <td>{course.duration}</td>
+                  
+
+                  <td> <a class="btn btn" href="/edit-course" role="button">
+                  Edit Course
+                  </a></td>
+
+                  <td> <a class="btn btn" href="/delete-course" role="button"   onClick={this.deleteCourse.bind(this, course.id)}>
+                  Delete Course
+                  </a> </td>
+                  
+                </tr>
+              ))}
+            </tbody>
+
+          </table>
+          </div>
+        </div>
+        
+          {/* {this.state.courses.length > 0 &&
             this.state.courses.map((item, index) => (
               <div key={index} className="card mb-3">
                 <div className="p-3">
@@ -292,7 +348,7 @@ class Course extends React.Component {
                   <br></br>
                 </div>
               </div>
-            ))}
+            ))} */}
           <br></br>
           <br></br>
           <br></br>
@@ -313,11 +369,15 @@ class Course extends React.Component {
             Add Course
           </a>
           &nbsp;&nbsp;&nbsp;
-          <a class="btn btn" href="/edit-category" role="button">
+          {/* <a class="btn btn" href="/edit-category" role="button">
             Edit Course
-          </a>
+          </a> */}
+
+<Pdf targetRef={ref} filename="CourseList.pdf" options={options} >
+                        {({ toPdf }) =>  <input type="button" value="Export" onClick={toPdf} className="btn btn-info"/>}
+                    </Pdf>
         </div>
-      </div>
+      
     );
   }
 }

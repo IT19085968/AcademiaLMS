@@ -21,22 +21,22 @@ class AddCourse extends React.Component{
     }
 
 
-  //   componentDidMount(){
-  //     axios.get('http://localhost:8080/lecturer/suggestion')
-  //     .then(response=>{
-  //         this.setState({lecturers: response.data},()=>{
-  //             let data=[];
-  //             this.state.lecturers.map((item,index)=>{
-  //                 let lecturer={
-  //                     value:item._id,
-  //                     label:item.name
-  //                 }
-  //                 data.push(lecturer)
-  //             });
-  //             this.setState({options:data});
-  //         })
-  //     })
-  // }
+    componentDidMount(){
+      axios.get('http://localhost:8080/lecturer/suggestion')
+      .then(response=>{
+          this.setState({lecturers: response.data},()=>{
+              let data=[];
+              this.state.lecturers.map((item,index)=>{
+                  let lecturer={
+                      value:item._id,
+                      label:item.name
+                  }
+                  data.push(lecturer)
+              });
+              this.setState({options:data});
+          })
+      })
+  }
 
 //   componentDidMount(){
 //     axios.get('http://localhost:8080/lecturer/suggestion')
@@ -132,7 +132,7 @@ class AddCourse extends React.Component{
         <input type="text" placeholder="Duration"  name='cduration' value={this.state.cduration} onChange={this.onChange} data-required="true" data-type="email" data-error-message="Your E-mail is required"/>
       </div>
       
-      {/* <div class='row'>
+      <div class='row'>
         <label htmlFor="lecturers" >Lecturers</label>
         <Select
         options={this.state.options}
@@ -140,7 +140,8 @@ class AddCourse extends React.Component{
         className="basic-multi-select"
         isMulti
         />
-      </div> */}
+      </div>
+      
       <input type="submit" value="Add Course"/>
     </form>
   </div>

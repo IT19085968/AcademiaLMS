@@ -33,11 +33,11 @@ public class CourseController {
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
-//
-//    @GetMapping("/")
-//    public List<Course> getCoursesList() {
-//        return courseService.getAllCourses();
-//    }
+
+    @GetMapping("/")
+    public List<Course> getCoursesList() {
+        return courseService.getAllCourses();
+    }
 
     @GetMapping("/{id}")
     public Course getOneCourse(@PathVariable String id) {
@@ -45,8 +45,8 @@ public class CourseController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Object> saveCourse(@Validated @RequestBody CourseCreateRequest request)throws Exception{
-        Course course = modelMapper.map(request,Course.class);
+    public ResponseEntity<Object> saveCourse(@Validated @RequestBody CourseCreateRequest request) throws Exception {
+        Course course = modelMapper.map(request, Course.class);
         Course saveCourse = courseService.addNewCourse(course);
         CourseCreateResponse courseCreateResponse = modelMapper.map(saveCourse, CourseCreateResponse.class);
         return new ResponseEntity<>(courseCreateResponse, HttpStatus.CREATED);
@@ -60,20 +60,19 @@ public class CourseController {
         return new ResponseEntity<>(courseSuggestionResponses, HttpStatus.OK);
     }
 
-
     @DeleteMapping("/{id}")
-    public void deleteCourse(@PathVariable("id")String id){
+    public void deleteCourse(@PathVariable("id") String id) {
         courseService.deleteCourse(id);
     }
 
     @PutMapping("/{id}")
-    private ResponseEntity<CourseUpdateResponse> update(@PathVariable String id, @Validated @RequestBody CourseCreateRequest request) throws Exception{
+    private ResponseEntity<CourseUpdateResponse> update(@PathVariable String id,
+            @Validated @RequestBody CourseCreateRequest request) throws Exception {
         Course course = modelMapper.map(request, Course.class);
         course.setId(id);
         Course courseUpdate = courseService.update(course);
         CourseUpdateResponse courseUpdateResponse = modelMapper.map(courseUpdate, CourseUpdateResponse.class);
         return new ResponseEntity<>(courseUpdateResponse, HttpStatus.OK);
     }
-
 
 }

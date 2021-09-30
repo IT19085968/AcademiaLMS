@@ -2,12 +2,16 @@ import React from "react";
 import axios from "axios";
 import "./Exam.css";
 import ViewQuiz from "../viewQuiz/viewQuiz";
+import AddExam from "./AddExam";
+import { Link, Route, Switch } from "react-router-dom";
 
 class Exam extends React.Component {
   constructor(props) {
     super(props);
+    this.onClick = this.onClick.bind(this);
     this.state = {
       exams: [],
+      examId: "",
       courseId: "",
       examDate: "",
       startTime: "",
@@ -15,6 +19,8 @@ class Exam extends React.Component {
       id: "",
       title: "",
       quizId: "",
+      isEdit: false,
+      isAdd: false,
     };
   }
 
@@ -25,6 +31,19 @@ class Exam extends React.Component {
         id: "",
         name: "",
       });
+
+      console.log("exams:", res.data);
+    });
+
+    // let quizn = {
+    //   exams: this.state.exams,
+    // };
+  }
+
+  onClick(e) {
+    e.preventDefault();
+    this.setState({
+      isAdd: true,
     });
   }
 
@@ -39,6 +58,18 @@ class Exam extends React.Component {
     };
   }
 
+  editExam(examId, title, courseName, examDate, courseId) {
+    this.setState({
+      // quizId: "61279e68495de239a7eccaca",
+      isEdit: true,
+      examId: examId,
+      title: title,
+      courseName: courseName,
+      examDate: examDate,
+      courseId: courseId,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -51,9 +82,18 @@ class Exam extends React.Component {
           {/* <button type="submit" className="btn btn-primary">
             Add Exam
           </button> */}
-          <a class="btn btn-primary" href="/add-exam" role="button">
+          {/* <a class="btn btn-primary" href="/add-exam" role="button">
             Add Exam
-          </a>
+          </a> */}
+          <Link to={{ pathname: "/add-exam" }}>
+            <button
+              type="button"
+              class="btn btn-primary"
+              // onClick={this.onClick}
+            >
+              Add Exam
+            </button>
+          </Link>
         </div>
         <br />
         <div className="container">
@@ -93,6 +133,20 @@ class Exam extends React.Component {
                     >
                       View
                     </button>
+                    <button
+                      onClick={(e) =>
+                        this.editExam(
+                          exam.id,
+                          exam.title,
+                          exam.courseName,
+                          exam.examDate,
+                          exam.courseId
+                        )
+                      }
+                      className="btn waves-effect waves-light"
+                    >
+                      Edit
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -101,6 +155,20 @@ class Exam extends React.Component {
         </div>
         <div className="col s6">
           {this.state.quizId ? <ViewQuiz quizId={this.state.quizId} /> : ""}
+        </div>
+        <div className="col s6">
+          {this.state.isEdit ? (
+            <AddExam
+              examId={this.state.examId}
+              isEdit={this.state.isEdit}
+              title={this.state.title}
+              courseName={this.state.courseName}
+              examDate={this.state.examDate}
+              courseId={this.state.courseId}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );

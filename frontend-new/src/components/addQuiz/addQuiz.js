@@ -88,7 +88,6 @@ class AddQuiz extends React.Component {
       examDate: this.state.examDate,
 
       categoryId: null,
-      examDate: null,
       startTime: null,
       endTime: null,
       instructions: null,

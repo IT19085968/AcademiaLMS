@@ -49,7 +49,7 @@ public class QuizController {
     public Quiz PutMapping(@RequestBody Quiz quiz) {
         // TODO: process PUT request
         Quiz oldQuiz = quizRepository.findById(quiz.getId()).orElse(null);
-        oldQuiz.setExamId(oldQuiz.getExamId());
+        oldQuiz.setExamId(quiz.getExamId());
         // List<Question> oldQuestions = quiz.getQuestions();
         // for (Question item : oldQuestions) {
         // System.out.println(item);

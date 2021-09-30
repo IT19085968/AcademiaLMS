@@ -49,18 +49,19 @@ class Exam extends React.Component {
     });
   }
 
-  viewTheQuiz(quizId) {
-    if (this.state.quizId) {
-      this.setState({
-        // quizId: "61279e68495de239a7eccaca",
-        quizId: "",
-      });
-    }
+  viewTheQuiz(quizId, examId) {
+    // if (this.state.quizId) {
+    //   this.setState({
+    //     // quizId: "61279e68495de239a7eccaca",
+    //     quizId: "",
+    //   });
+    // }
     this.setState({
       // quizId: "61279e68495de239a7eccaca",
       quizId: quizId,
       isEdit: false,
       isEditQuiz: true,
+      examId: examId,
     });
 
     let quizn = {
@@ -80,6 +81,18 @@ class Exam extends React.Component {
       courseId: courseId,
       quizId: quizId,
     });
+  }
+
+  deleteExam(examId) {
+    axios
+      .delete("http://localhost:8080/exams/" + examId)
+      .then((res) => {
+        alert("Data successfully deleted");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+      });
   }
 
   render() {
@@ -140,10 +153,10 @@ class Exam extends React.Component {
                   <td>{exam.startTime}</td>
                   <td>
                     <button
-                      onClick={(e) => this.viewTheQuiz(exam.quizId)}
+                      onClick={(e) => this.viewTheQuiz(exam.quizId, exam.id)}
                       className="btn waves-effect waves-light"
                     >
-                      View
+                      Edit Quiz
                     </button>
                     <button
                       onClick={(e) =>
@@ -158,7 +171,13 @@ class Exam extends React.Component {
                       }
                       className="btn waves-effect waves-light"
                     >
-                      Edit
+                      Edit Exam
+                    </button>
+                    <button
+                      onClick={(e) => this.deleteExam(exam.id)}
+                      className="btn waves-effect waves-light"
+                    >
+                      Delete Exam
                     </button>
                   </td>
                 </tr>

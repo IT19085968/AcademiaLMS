@@ -213,7 +213,11 @@ export default class AddExam extends Component {
           <div class="fieldset">
             <br></br>
             <br></br>
-            <legend>Add New Exam Here</legend>
+            {this.state.isEdit == true ? (
+              <legend>Edit Exam</legend>
+            ) : (
+              <legend>Add New Exam Here</legend>
+            )}
 
             <form onSubmit={(e) => this.onSubmit(e)}>
               <div class="row">

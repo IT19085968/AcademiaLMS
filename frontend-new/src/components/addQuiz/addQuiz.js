@@ -99,6 +99,11 @@ class AddQuiz extends React.Component {
         });
       });
     }
+
+    let examOne = {
+      title: this.state.title,
+      isEditQuiz: this.state.isEditQuiz,
+    };
   }
 
   componentDidUpdate() {
@@ -177,6 +182,7 @@ class AddQuiz extends React.Component {
 
     let examOne = {
       title: this.state.title,
+      isEditQuiz: this.state.isEditQuiz,
     };
   }
 
@@ -275,13 +281,16 @@ class AddQuiz extends React.Component {
   //     });
   //   }
 
-  onSubmit(e, examId) {
+  onSubmit(e, oldexamId) {
     e.preventDefault();
 
-    if (this.state.isEditQuiz && this.state.isEditQuiz == true) {
+    const { isEditQuiz } = this.props;
+    const { examId } = this.props;
+
+    if (isEditQuiz && isEditQuiz == true) {
       let quizUpdated = {
         id: this.state.quizId,
-        examId: this.state.examId,
+        examId: examId,
         questions: [
           {
             questionNumber: 1,
@@ -328,7 +337,7 @@ class AddQuiz extends React.Component {
         });
     } else {
       let quizNew = {
-        examId: examId,
+        examId: oldexamId,
         questions: [
           {
             questionNumber: 1,
@@ -379,11 +388,12 @@ class AddQuiz extends React.Component {
 
   render() {
     const { examId } = this.props;
+    const { isEditQuiz } = this.props;
     return (
       <div className="quizContent">
         <br></br>
         <br></br>
-        <h3>Add New Quiz</h3>
+        {isEditQuiz == true ? <h3>Edit Quiz</h3> : <h3>Add New Quiz</h3>}
 
         <form onSubmit={(e) => this.onSubmit(e, examId)}>
           <div className="mb-3">
@@ -599,7 +609,7 @@ class AddQuiz extends React.Component {
           <button type="submit" class="btn btn-primary">
             Submit
           </button>
-          {!this.state.isEditQuiz ? (
+          {!isEditQuiz ? (
             <button
               type="button"
               class="btn btn-primary"

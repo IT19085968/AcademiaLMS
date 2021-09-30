@@ -10,7 +10,7 @@ class AddQuiz extends React.Component {
     // this.onChangeProposalID = this.onChangeProposalID.bind(this);
     this.state = {
       exam: [],
-      quizID: "",
+      quizId: "",
       examId: "",
       question1: "",
       question2: "",
@@ -37,6 +37,8 @@ class AddQuiz extends React.Component {
       endTime: "",
       instructions: "",
       type: "",
+
+      isEditQuiz: false,
     };
   }
 
@@ -46,13 +48,118 @@ class AddQuiz extends React.Component {
     const { courseId } = this.props;
     const { courseName } = this.props;
     const { examDate } = this.props;
-    this.setState({
-      examId: examId,
-      title: title,
-      courseId: courseId,
-      courseName: courseName,
-      examDate: examDate,
-    });
+    const { quizId } = this.props;
+    const { isEditQuiz } = this.props;
+
+    if (
+      this.state.examId != examId &&
+      this.state.title != title &&
+      this.state.courseId != courseId
+    ) {
+      this.setState({
+        examId: examId,
+        title: title,
+        courseId: courseId,
+        courseName: courseName,
+        examDate: examDate,
+        isEditQuiz: isEditQuiz,
+        // quizID: quizID,
+      });
+    }
+
+    // if (this.state.quizId) {
+    //   this.setState({
+    //     // quizId: "61279e68495de239a7eccaca",
+    //     quizId: "",
+    //   });
+    // }
+
+    if (quizId && quizId != this.state.quizId) {
+      this.setState({
+        quizId: quizId,
+      });
+      axios.get("http://localhost:8080/quiz/" + quizId).then((res) => {
+        this.setState({
+          questions: res.data.questions,
+          question1: res.data.questions[0].question,
+          answers1: res.data.questions[0].answers[0],
+          answers2: res.data.questions[0].answers[1],
+          answers3: res.data.questions[0].answers[2],
+          correctAnswer1: res.data.questions[0].correctAnswer,
+          question2: res.data.questions[1].question,
+          answers4: res.data.questions[1].answers[0],
+          answers5: res.data.questions[1].answers[1],
+          answers6: res.data.questions[1].answers[2],
+          correctAnswer2: res.data.questions[1].correctAnswer,
+          question3: res.data.questions[2].question,
+          answers7: res.data.questions[2].answers[0],
+          answers8: res.data.questions[2].answers[1],
+          answers9: res.data.questions[2].answers[2],
+          correctAnswer3: res.data.questions[2].correctAnswer,
+        });
+      });
+    }
+  }
+
+  componentDidUpdate() {
+    const { examId } = this.props;
+    const { title } = this.props;
+    const { courseId } = this.props;
+    const { courseName } = this.props;
+    const { examDate } = this.props;
+    const { quizId } = this.props;
+    const { isEditQuiz } = this.props;
+
+    if (
+      this.state.examId != examId &&
+      this.state.title != title &&
+      this.state.courseId != courseId
+    ) {
+      this.setState({
+        examId: examId,
+        title: title,
+        courseId: courseId,
+        courseName: courseName,
+        examDate: examDate,
+        isEditQuiz: isEditQuiz,
+        // quizID: quizID,
+      });
+    }
+
+    // if (this.state.quizId) {
+    //   this.setState({
+    //     // quizId: "61279e68495de239a7eccaca",
+    //     quizId: "",
+    //   });
+    // }
+
+    if (quizId && quizId != this.state.quizId) {
+      this.setState({
+        quizId: quizId,
+      });
+      axios.get("http://localhost:8080/quiz/" + quizId).then((res) => {
+        this.setState({
+          questions: res.data.questions,
+          question1: res.data.questions[0].question,
+          answers1: res.data.questions[0].answers[0],
+          answers2: res.data.questions[0].answers[1],
+          answers3: res.data.questions[0].answers[2],
+          correctAnswer1: res.data.questions[0].correctAnswer,
+          question2: res.data.questions[1].question,
+          answers4: res.data.questions[1].answers[0],
+          answers5: res.data.questions[1].answers[1],
+          answers6: res.data.questions[1].answers[2],
+          correctAnswer2: res.data.questions[1].correctAnswer,
+          question3: res.data.questions[2].question,
+          answers7: res.data.questions[2].answers[0],
+          answers8: res.data.questions[2].answers[1],
+          answers9: res.data.questions[2].answers[2],
+          correctAnswer3: res.data.questions[2].correctAnswer,
+        });
+      });
+    }
+
+    // this.componentDidMount();
     // axios.get("http://localhost:8080/exams/" + examId).then((res) => {
     //   this.setState({
     //     title: res.data.title,
@@ -73,6 +180,62 @@ class AddQuiz extends React.Component {
     };
   }
 
+  // componentDidUpdate() {
+  //   console.log("component did update");
+  // }
+
+  // componentDidUpdate() {
+  //   const { examId } = this.props;
+  //   const { title } = this.props;
+  //   const { courseId } = this.props;
+  //   const { courseName } = this.props;
+  //   const { examDate } = this.props;
+  //   const { quizId } = this.props;
+  //   const { isEditQuiz } = this.props;
+  //   this.setState({
+  //     examId: examId,
+  //     title: title,
+  //     courseId: courseId,
+  //     courseName: courseName,
+  //     examDate: examDate,
+  //     isEditQuiz: isEditQuiz,
+  //     // quizID: quizID,
+  //   });
+
+  //   // if (this.state.quizId) {
+  //   //   this.setState({
+  //   //     // quizId: "61279e68495de239a7eccaca",
+  //   //     quizId: "",
+  //   //   });
+  //   // }
+
+  //   if (quizId) {
+  //     this.setState({
+  //       quizId: quizId,
+  //     });
+  //     axios.get("http://localhost:8080/quiz/" + quizId).then((res) => {
+  //       this.setState({
+  //         questions: res.data.questions,
+  //         question1: res.data.questions[0].question,
+  //         answers1: res.data.questions[0].answers[0],
+  //         answers2: res.data.questions[0].answers[1],
+  //         answers3: res.data.questions[0].answers[2],
+  //         correctAnswer1: res.data.questions[0].correctAnswer,
+  //         question2: res.data.questions[1].question,
+  //         answers4: res.data.questions[1].answers[0],
+  //         answers5: res.data.questions[1].answers[1],
+  //         answers6: res.data.questions[1].answers[2],
+  //         correctAnswer2: res.data.questions[1].correctAnswer,
+  //         question3: res.data.questions[2].question,
+  //         answers7: res.data.questions[2].answers[0],
+  //         answers8: res.data.questions[2].answers[1],
+  //         answers9: res.data.questions[2].answers[2],
+  //         correctAnswer3: res.data.questions[2].correctAnswer,
+  //       });
+  //     });
+  //   }
+  // }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -83,7 +246,7 @@ class AddQuiz extends React.Component {
       id: this.state.examId,
       title: this.state.title,
       courseId: this.state.courseId,
-      quizId: this.state.quizID,
+      quizId: this.state.quizId,
       courseName: this.state.courseName,
       examDate: this.state.examDate,
 
@@ -114,53 +277,104 @@ class AddQuiz extends React.Component {
 
   onSubmit(e, examId) {
     e.preventDefault();
-    let quizNew = {
-      examId: examId,
-      questions: [
-        {
-          questionNumber: 1,
-          question: this.state.question1,
-          answers: [
-            this.state.answers1,
-            this.state.answers2,
-            this.state.answers3,
-          ],
-          correctAnswer: this.state.correctAnswer1,
-        },
-        {
-          questionNumber: 2,
-          question: this.state.question2,
-          answers: [
-            this.state.answers4,
-            this.state.answers5,
-            this.state.answers6,
-          ],
-          correctAnswer: this.state.correctAnswer2,
-        },
-        {
-          questionNumber: 3,
-          question: this.state.question3,
-          answers: [
-            this.state.answers7,
-            this.state.answers8,
-            this.state.answers9,
-          ],
-          correctAnswer: this.state.correctAnswer3,
-        },
-      ],
-    };
 
-    axios
-      .post("http://localhost:8080/quiz/", quizNew)
-      .then((response) => {
-        this.setState({ quizID: response.data.id });
-        console.log(response.data.id);
-        alert("Data successfully inserted");
-      })
-      .catch((error) => {
-        console.log(error.message);
-        alert(error.message);
-      });
+    if (this.state.isEditQuiz && this.state.isEditQuiz == true) {
+      let quizUpdated = {
+        id: this.state.quizId,
+        examId: this.state.examId,
+        questions: [
+          {
+            questionNumber: 1,
+            question: this.state.question1,
+            answers: [
+              this.state.answers1,
+              this.state.answers2,
+              this.state.answers3,
+            ],
+            correctAnswer: this.state.correctAnswer1,
+          },
+          {
+            questionNumber: 2,
+            question: this.state.question2,
+            answers: [
+              this.state.answers4,
+              this.state.answers5,
+              this.state.answers6,
+            ],
+            correctAnswer: this.state.correctAnswer2,
+          },
+          {
+            questionNumber: 3,
+            question: this.state.question3,
+            answers: [
+              this.state.answers7,
+              this.state.answers8,
+              this.state.answers9,
+            ],
+            correctAnswer: this.state.correctAnswer3,
+          },
+        ],
+      };
+
+      axios
+        .put("http://localhost:8080/quiz/", quizUpdated)
+        .then((response) => {
+          // this.setState({ examId: response.data.id });
+          alert("Data successfully inserted");
+        })
+        .catch((error) => {
+          console.log(error.message);
+          alert(error.message);
+        });
+    } else {
+      let quizNew = {
+        examId: examId,
+        questions: [
+          {
+            questionNumber: 1,
+            question: this.state.question1,
+            answers: [
+              this.state.answers1,
+              this.state.answers2,
+              this.state.answers3,
+            ],
+            correctAnswer: this.state.correctAnswer1,
+          },
+          {
+            questionNumber: 2,
+            question: this.state.question2,
+            answers: [
+              this.state.answers4,
+              this.state.answers5,
+              this.state.answers6,
+            ],
+            correctAnswer: this.state.correctAnswer2,
+          },
+          {
+            questionNumber: 3,
+            question: this.state.question3,
+            answers: [
+              this.state.answers7,
+              this.state.answers8,
+              this.state.answers9,
+            ],
+            correctAnswer: this.state.correctAnswer3,
+          },
+        ],
+      };
+
+      axios
+        .post("http://localhost:8080/quiz/", quizNew)
+        .then((response) => {
+          this.setState({ quizId: response.data.id });
+          console.log(response.data.id);
+          alert("Data successfully inserted");
+        })
+        .catch((error) => {
+          console.log(error.message);
+          alert(error.message);
+        });
+    }
   }
 
   render() {
@@ -385,9 +599,18 @@ class AddQuiz extends React.Component {
           <button type="submit" class="btn btn-primary">
             Submit
           </button>
-          <button type="button" class="btn btn-primary" onClick={this.onClick}>
-            Confirm
-          </button>
+          {!this.state.isEditQuiz ? (
+            <button
+              type="button"
+              class="btn btn-primary"
+              onClick={this.onClick}
+              // disabled={this.state.isEditQuiz}
+            >
+              Confirm
+            </button>
+          ) : (
+            ""
+          )}
         </form>
       </div>
     );

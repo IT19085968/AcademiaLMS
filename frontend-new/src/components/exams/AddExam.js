@@ -37,6 +37,8 @@ export default class AddExam extends Component {
       clearable: true,
       examId: "",
       isEdit: false,
+      quizId: "",
+      isEditQuiz: false,
     };
   }
 
@@ -53,6 +55,7 @@ export default class AddExam extends Component {
     const { courseName } = this.props;
     const { examDate } = this.props;
     const { courseId } = this.props;
+    const { quizId } = this.props;
     if (isEdit && examId) {
       this.setState({
         examId: examId,
@@ -60,6 +63,49 @@ export default class AddExam extends Component {
         title: title,
         courseName: courseName,
         isEdit: isEdit,
+        quizId: quizId,
+        // selectedOption: courseName,
+        courseId: courseId,
+        selectedOption: {
+          label: courseName,
+          value: courseId,
+        },
+      });
+    }
+    // axios.get("http://localhost:8080/exams/" + examId).then((res) => {
+    //   this.setState({
+    //     examDate: res.data.examDate,
+    //     title: res.data.title,
+    //     courseId: res.data.courseId,
+    //     courseName: res.data.courseName,
+
+    //     selectedOption: res.data.courseName,
+    //   });
+    // });
+  }
+
+  componentDidUpdate() {
+    // const location = useLocation();
+    axios.get("http://localhost:8080/courses/").then((res) => {
+      this.setState({
+        courses: res.data,
+      });
+    });
+    const { examId } = this.props;
+    const { isEdit } = this.props;
+    const { title } = this.props;
+    const { courseName } = this.props;
+    const { examDate } = this.props;
+    const { courseId } = this.props;
+    const { quizId } = this.props;
+    if (isEdit && examId && this.state.examId != examId) {
+      this.setState({
+        examId: examId,
+        examDate: examDate,
+        title: title,
+        courseName: courseName,
+        isEdit: isEdit,
+        quizId: quizId,
         // selectedOption: courseName,
         courseId: courseId,
         selectedOption: {
@@ -110,7 +156,7 @@ export default class AddExam extends Component {
         id: this.state.examId,
         title: this.state.title,
         courseId: this.state.courseId,
-        quizId: null,
+        quizId: this.state.quizId,
         courseName: this.state.courseName,
         examDate: this.state.examDate,
 
@@ -237,6 +283,8 @@ export default class AddExam extends Component {
               courseId={this.state.courseId}
               courseName={this.state.courseName}
               examDate={this.state.examDate}
+              quizId={this.state.quizId}
+              isEditQuiz={this.state.isEditQuiz}
             />
           ) : (
             ""

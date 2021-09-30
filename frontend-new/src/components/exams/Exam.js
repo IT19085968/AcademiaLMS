@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./Exam.css";
 import ViewQuiz from "../viewQuiz/viewQuiz";
+import AddQuiz from "../addQuiz/addQuiz";
 import AddExam from "./AddExam";
 import { Link, Route, Switch } from "react-router-dom";
 
@@ -20,6 +21,7 @@ class Exam extends React.Component {
       title: "",
       quizId: "",
       isEdit: false,
+      isEditQuiz: false,
       isAdd: false,
     };
   }
@@ -48,9 +50,17 @@ class Exam extends React.Component {
   }
 
   viewTheQuiz(quizId) {
+    if (this.state.quizId) {
+      this.setState({
+        // quizId: "61279e68495de239a7eccaca",
+        quizId: "",
+      });
+    }
     this.setState({
       // quizId: "61279e68495de239a7eccaca",
       quizId: quizId,
+      isEdit: false,
+      isEditQuiz: true,
     });
 
     let quizn = {
@@ -58,15 +68,17 @@ class Exam extends React.Component {
     };
   }
 
-  editExam(examId, title, courseName, examDate, courseId) {
+  editExam(examId, title, courseName, examDate, courseId, quizId) {
     this.setState({
       // quizId: "61279e68495de239a7eccaca",
       isEdit: true,
+      isEditQuiz: false,
       examId: examId,
       title: title,
       courseName: courseName,
       examDate: examDate,
       courseId: courseId,
+      quizId: quizId,
     });
   }
 
@@ -140,7 +152,8 @@ class Exam extends React.Component {
                           exam.title,
                           exam.courseName,
                           exam.examDate,
-                          exam.courseId
+                          exam.courseId,
+                          exam.quizId
                         )
                       }
                       className="btn waves-effect waves-light"
@@ -153,8 +166,27 @@ class Exam extends React.Component {
             </tbody>
           </table>
         </div>
+        {/* <div className="col s6">
+          {this.state.quizId && this.state.isEdit == false ? (
+            <ViewQuiz quizId={this.state.quizId} />
+          ) : (
+            ""
+          )}
+        </div> */}
         <div className="col s6">
-          {this.state.quizId ? <ViewQuiz quizId={this.state.quizId} /> : ""}
+          {this.state.quizId && this.state.isEdit == false ? (
+            <AddQuiz
+              examId={this.state.examId}
+              title={this.state.title}
+              courseId={this.state.courseId}
+              courseName={this.state.courseName}
+              examDate={this.state.examDate}
+              quizId={this.state.quizId}
+              isEditQuiz={this.state.isEditQuiz}
+            />
+          ) : (
+            ""
+          )}
         </div>
         <div className="col s6">
           {this.state.isEdit ? (
@@ -165,6 +197,7 @@ class Exam extends React.Component {
               courseName={this.state.courseName}
               examDate={this.state.examDate}
               courseId={this.state.courseId}
+              quizId={this.state.quizId}
             />
           ) : (
             ""

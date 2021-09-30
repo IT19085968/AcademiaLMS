@@ -266,7 +266,7 @@ export default class AddExam extends Component {
               <div class="row">
                 <label htmlFor="Type">Exam Date</label>
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   id="Type"
                   name="examDate"

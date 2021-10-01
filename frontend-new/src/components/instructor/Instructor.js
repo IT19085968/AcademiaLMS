@@ -7,10 +7,10 @@ const ref = React.createRef();
 const options = {
     orientation: 'landscape',
     unit: 'in',
-    format: [9.5,8]
+    format: [13,8]
 };
 
-//var [searchTerm, setsearchTerm] = useState("");
+
 class InstructorList extends React.Component {
 
   constructor(props) {
@@ -28,7 +28,7 @@ class InstructorList extends React.Component {
       id: "",
       searchInstructor:"",
       searchedInstructors: [],
-      
+    
     
     };
   }

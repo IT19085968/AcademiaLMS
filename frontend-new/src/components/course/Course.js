@@ -15,6 +15,7 @@ import Pdf from 'react-to-pdf';
 import AddCourse from './AddCourse';
 
 const ref = React.createRef();
+
 const options = {
     orientation: 'landscape',
     unit: 'in',
@@ -24,14 +25,25 @@ const options = {
 class Course extends React.Component {
   constructor(props) {
     super(props);
+    this.onClick = this.onClick.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
+    
     this.state = {
       courses: [],
-      courseId:"",
-      courseName:"",
-      courseDescription:"",
+      // courseId:"",
+      id:"",
+      // courseName:"",
+      name:"",
+      // 
+      description:"",
       duration:"",
       isEdit:false,
-      isAdd: true
+      isAdd: true,
+      searchCourse:"",
+      selectedCourses:"",
     };
   }
 
@@ -60,17 +72,40 @@ class Course extends React.Component {
     });
   }
 
-  editCourse(courseId, courseName, courseDescription, duration) {
+  editCourse(id, name, description, duration) {
     this.setState({
       isEdit: true,
-      courseId: courseId,
-      courseName: courseName,
-      courseDescription: courseDescription,
+      id: id,
+      name: name,
+      description: description,
       duration: duration,
     });
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+    this.setState({
+      selectedCourses: this.state.courses,
+    });
+    this.setState({
+      selectedCourses: this.state.selectedCourses.filter(
+        (course) => course.name == this.state.selectedCourses
+      ),
+    });
+  }
 
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSearch(e) {
+    e.preventDefault();
+    this.setState({
+      courses: this.state.courses.filter(
+        (course) => course.name == this.state.searchCourse
+      ),
+    });
+  }
 
   // ViewCourse = (id) =>{
   //   axios.get("http://localhost:8080/courses/" +id)
@@ -338,7 +373,32 @@ class Course extends React.Component {
         <br></br>
         <br></br>
 
+
+
         <div className="container">
+
+        <div class="search-container">
+            <form onSubmit={(e) => this.onSearch(e)}>
+              <div className="rowClass2">
+                <div className="searchInput">
+                  <input
+                    type="text"
+                    placeholder="Search.."
+                    className="form-control"
+                    id="Type"
+                    name="searchCourse"
+                    value={this.state.searchCourse}
+                    onChange={this.onChange}
+                    // aria-describedby="emailHelp"
+                  />
+                </div>
+                <button type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          
         <div ref={ref}>
           <table className="table table-bordered tableClass">
             <thead>
@@ -373,6 +433,7 @@ class Course extends React.Component {
                   <button
                         onClick={(e) =>
                           this.editCourse(
+                            course.id,
                             course.name,
                             course.description,
                             course.duration
@@ -438,10 +499,10 @@ class Course extends React.Component {
                     <div className="col s6">
                     {this.state.isEdit ? (
             <AddCourse
-              courseId={this.state.courseId}
+              id={this.state.id}
               isEdit={this.state.isEdit}
-              courseName={this.state.courseName}
-              courseDescription={this.state.courseDescription}
+              name={this.state.name}
+              description={this.state.description}
               duration={this.state.duration}
               
             />

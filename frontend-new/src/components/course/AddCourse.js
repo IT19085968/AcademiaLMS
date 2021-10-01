@@ -19,7 +19,7 @@ class AddCourse extends React.Component{
           lecturers:[],
           options:[],
           selectedLecturers:[],
-          courseId:"",
+          id:"",
           isEdit: false,
           // courseId:"",
           // lecturerId:"",
@@ -83,19 +83,19 @@ class AddCourse extends React.Component{
     })
 
 
-    const { courseId } = this.props;
+    const { id } = this.props;
     const { isEdit } = this.props;
-    const { courseName } = this.props;
-    const { courseDescription } = this.props;
-    const { duration} = this.props;
+    const { cname } = this.props;
+    const { cdescription } = this.props;
+    const { cduration} = this.props;
 
-    if(courseId){
+    if(id){
         this.setState({
-          courseId : courseId,
+          id : id,
           isEdit : isEdit,
-          cname : courseName,
-          cdescription : courseDescription,
-          cduration : duration
+          cname : cname,
+          cdescription : cdescription,
+          cduration : cduration
         })
     }
 }
@@ -118,19 +118,19 @@ componentDidUpdate(){
     })
 
 
-    const { courseId } = this.props;
+    const { id } = this.props;
     const { isEdit } = this.props;
-    const { courseName } = this.props;
-    const { courseDescription } = this.props;
-    const { duration} = this.props;
+    const { cname } = this.props;
+    const { cdescription } = this.props;
+    const { cduration} = this.props;
 
-    if(courseId != this.state.courseId){
+    if(id != this.state.id){
         this.setState({
-          courseId : courseId,
+          id : id,
           isEdit : isEdit,
-          cname : courseName,
-          cdescription : courseDescription,
-          cduration : duration
+          cname : cname,
+          cdescription : cdescription,
+          cduration : cduration
         })
     }
 }

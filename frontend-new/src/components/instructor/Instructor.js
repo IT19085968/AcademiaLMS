@@ -15,6 +15,10 @@ class InstructorList extends React.Component {
 
   constructor(props) {
     super(props);
+    this.onSearch = this.onSearch.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+
     this.state = {
       instructors: [],
       Courses: [],
@@ -22,8 +26,10 @@ class InstructorList extends React.Component {
       email: "",
       contactNumber: "",
       id: "",
-      //searchTerm: 0,
-      //setsearchTerm:0 
+      searchInstructor:"",
+      searchedInstructors: [],
+      
+    
     };
   }
 
@@ -49,6 +55,32 @@ class InstructorList extends React.Component {
     });
   }
 
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+ 
+  onSearch(e) {
+    e.preventDefault();
+    this.setState({
+      instructors: this.state.instructors.filter(
+        (instructor) => instructor.name == this.state.searchInstructor
+      ),
+    });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.setState({
+      searchedInstructors: this.state.instructors,
+    });
+    this.setState({
+      searchedInstructors: this.state.searchInstructors.filter(
+        (instructor) => instructor.name == this.state.searchInstructor
+      ),
+    });
+  }
+
+
 
   render() {
     return (
@@ -69,11 +101,12 @@ class InstructorList extends React.Component {
 
         <div className="container">
           <div class="search-container">
-            <form action="/action_page.php">
+            <form onSubmit={(e) => this.onSearch(e)}>
               <input type="text" 
                      placeholder="Search.." 
-                     name="search" 
-              // onChange={(e) => {setsearchTerm(e.target.value);}}
+                     name="searchInstructor" 
+                     value={this.state.searchInstructor}
+                     onChange={this.onChange}
                />
               <button type="submit">
                 <i class="fa fa-search"></i>
@@ -96,22 +129,12 @@ class InstructorList extends React.Component {
             </thead>
 
             <tbody>
-              {this.state.instructors
-              // .filter(val=>{
-              //   if(searchTerm === ''){
-              //     return val;
-              //   }else if(
-              //      val.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-              //   ){
-              //     return val;
-              //   }
-              // })
-              .map((instructor) => (
+              {this.state.instructors.map((instructor) => (
                 <tr key={instructor.id}>
                   <td>{instructor.name}</td>
                   <td>{instructor.email}</td>
                   <td>{instructor.contactNumber}</td>
-                  <td>{instructor.courses}</td>
+                  <td>{instructor.courseName}</td>
                   <td>
                   <button
                       // onClick={(e) => this.viewTheQuiz(exam.quizId)}

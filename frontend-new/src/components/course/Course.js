@@ -12,20 +12,47 @@ import spring from "../images/7.jpg";
 import html5 from "../images/8.jpg";
 import "./Course.css";
 import Pdf from 'react-to-pdf';
+import AddCourse from './AddCourse';
 
 const ref = React.createRef();
+
 const options = {
-    orientation: 'landscape',
-    unit: 'in',
-    format: [9.5,8]
+  orientation: 'landscape',
+  unit: 'in',
+  // format: [9.5, 8]
+  format: [7, 7],
 };
 
 class Course extends React.Component {
   constructor(props) {
     super(props);
+    this.onClick = this.onClick.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
+
     this.state = {
       courses: [],
+      // courseId:"",
+      id: "",
+      // courseName:"",
+      name: "",
+      // 
+      description: "",
+      duration: "",
+      isEdit: false,
+      isAdd: true,
+      searchCourse: "",
+      selectedCourses: "",
     };
+  }
+
+  onClick(e) {
+    e.preventDefault();
+    this.setState({
+      isAdd: true,
+    });
   }
 
   componentDidMount() {
@@ -34,22 +61,67 @@ class Course extends React.Component {
     });
   }
 
-  deleteCourse = (id) =>{
-    axios.delete("http://localhost:8080/courses/" +id)
-    .then(responce =>{
-      if(responce.data != null){
+  deleteCourse = (id) => {
+    axios.delete("http://localhost:8080/courses/" + id)
+      .then(responce => {
+        if (responce.data != null) {
           alert("Course deleted successfully");
           this.setState({
             courses: this.state.courses.filter(course => course.id != id)
           });
-      }
+        }
+      });
+  }
+
+  editCourse(id, name, description, duration) {
+    this.setState({
+      isEdit: true,
+      id: id,
+      name: name,
+      description: description,
+      duration: duration,
     });
   }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.setState({
+      selectedCourses: this.state.courses,
+    });
+    this.setState({
+      selectedCourses: this.state.selectedCourses.filter(
+        (course) => course.name == this.state.selectedCourses
+      ),
+    });
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSearch(e) {
+    e.preventDefault();
+    this.setState({
+      courses: this.state.courses.filter(
+        (course) => course.name == this.state.searchCourse
+      ),
+    });
+  }
+
+  // ViewCourse = (id) =>{
+  //   axios.get("http://localhost:8080/courses/" +id)
+  //   .then(responce =>{
+  //     if(responce.data != null){
+  //         // alert("Course deleted successfully");
+  //         this.setState({ courses: responce.data });
+  //     }
+  //   });
+  // }
 
   render() {
     return (
       <div className="course">
-         <section class="home">
+        <section class="home">
           <img class="image" src={img1} />
           <div class="centered">
             <div class="hero-text text-white">
@@ -71,18 +143,18 @@ class Course extends React.Component {
               </div>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <div class="col">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input class="btn btn" type="submit" value="Search" />
               </div>
             </div>
           </div>
-        </section> 
+        </section>
 
         <section class="course-section spad pb-0">
           <div class="course-warp">
@@ -132,25 +204,25 @@ class Course extends React.Component {
                   </div>
                   <div class="course-info">
                     <a href="/select-course" >
-                    <div class="course-text">
-                      <h3>Learn Spring Boot</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur</p>
-                      <div class="students">120 Students</div>
-                    </div>
-                    <div class="course-author">
-                      <div
-                        class="ca-pic set-bg"
-                        data-setbg="img/authors/2.jpg"
-                      ></div>
-                      <p>
-                        William Parker, <span>Developer</span>
-                      </p>
-                    </div>
+                      <div class="course-text">
+                        <h3>Learn Spring Boot</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                        <div class="students">120 Students</div>
+                      </div>
+                      <div class="course-author">
+                        <div
+                          class="ca-pic set-bg"
+                          data-setbg="img/authors/2.jpg"
+                        ></div>
+                        <p>
+                          William Parker, <span>Developer</span>
+                        </p>
+                      </div>
                     </a>
                   </div>
-                 
+
                 </div>
-              
+
               </div>
 
               <div class="mix col-lg-3 col-md-4 col-sm-6 web">
@@ -302,43 +374,91 @@ class Course extends React.Component {
         <br></br>
         <br></br>
 
+
+
         <div className="container">
-        <div ref={ref}>
-          <table className="table table-bordered tableClass">
-            <thead>
-              <tr>
-                <th scope="col">Course Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Duration</th>
-                {/* <th scope="col">Instructors</th> */}
-              </tr>
-            </thead>
 
-            <tbody>
-              {this.state.courses.map((course) => (
-                <tr key={course.id}>
-                  <td>{course.name}</td>
-                  <td>{course.description}</td>
-                  <td>{course.duration}</td>
-                  
+          <div class="search-container">
+            <form onSubmit={(e) => this.onSearch(e)}>
+              <div className="rowClass2">
+                <div className="searchInput">
+                  <input
+                    type="text"
+                    placeholder="Search.."
+                    className="form-control"
+                    id="Type"
+                    name="searchCourse"
+                    value={this.state.searchCourse}
+                    onChange={this.onChange}
+                  // aria-describedby="emailHelp"
+                  />
+                </div>
+                <button type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
 
-                  <td> <a class="btn btn" href="/edit-course" role="button">
-                  Edit Course
-                  </a></td>
-
-                  <td> <a class="btn btn" href="/delete-course" role="button"   onClick={this.deleteCourse.bind(this, course.id)}>
-                  Delete Course
-                  </a> </td>
-                  
+          <div ref={ref}>
+            <table className="table table-bordered tableClass">
+              <thead>
+                <tr>
+                  <th scope="col">Course Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Duration</th>
+                  {/* <th scope="col">Instructors</th> */}
                 </tr>
-              ))}
-            </tbody>
+              </thead>
 
-          </table>
+              <tbody>
+                {this.state.courses.map((course) => (
+                  <tr key={course.id}>
+                    <td>{course.name}</td>
+                    <td>{course.description}</td>
+                    <td>{course.duration}</td>
+
+
+                    {/* <td> <a class="btn btn" href="/edit-course" role="button" 
+                  onClick={(e) =>
+                    this.editCourse(
+                      course.courseName,
+                      course.courseDescription,
+                      course.duration
+                    )
+                  }>
+                  Edit Course
+                  </a></td> */}
+
+                    <td>
+                      <button
+                        onClick={(e) =>
+                          this.editCourse(
+                            course.id,
+                            course.name,
+                            course.description,
+                            course.duration
+                          )
+                        }
+                        className="btn waves-effect waves-blue2"
+                      >
+                        Edit Exam
+                      </button>
+                    </td>
+
+                    <td> <a class="btn btn" href="/delete-course" role="button" onClick={this.deleteCourse.bind(this, course.id)}>
+                      Delete Course
+                    </a> </td>
+
+                  </tr>
+                ))}
+              </tbody>
+
+            </table>
           </div>
         </div>
-        
-          {/* {this.state.courses.length > 0 &&
+
+        {/* {this.state.courses.length > 0 &&
             this.state.courses.map((item, index) => (
               <div key={index} className="card mb-3">
                 <div className="p-3">
@@ -349,35 +469,50 @@ class Course extends React.Component {
                 </div>
               </div>
             ))} */}
-          <br></br>
-          <br></br>
-          <br></br>
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          <a class="btn btn" href="/add-course" role="button">
-            Add Course
-          </a>
-          &nbsp;&nbsp;&nbsp;
-          {/* <a class="btn btn" href="/edit-category" role="button">
+        <br></br>
+        <br></br>
+        <br></br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        <a class="btn btn" href="/add-course" role="button">
+          Add Course
+        </a>
+        &nbsp;&nbsp;&nbsp;
+        {/* <a class="btn btn" href="/edit-category" role="button">
             Edit Course
           </a> */}
 
-<Pdf targetRef={ref} filename="CourseList.pdf" options={options} >
-                        {({ toPdf }) =>  <input type="button" value="Export" onClick={toPdf} className="btn btn-info"/>}
-                    </Pdf>
+        <Pdf targetRef={ref} filename="CourseList.pdf" options={options} >
+          {({ toPdf }) => <input type="button" value="Export" onClick={toPdf} className="btn btn-info" />}
+        </Pdf>
+
+        <div className="col s6">
+          {this.state.isEdit ? (
+            <AddCourse
+              id={this.state.id}
+              isEdit={this.state.isEdit}
+              name={this.state.name}
+              description={this.state.description}
+              duration={this.state.duration}
+
+            />
+          ) : (
+            ""
+          )}
         </div>
-      
+      </div>
+
     );
   }
 }

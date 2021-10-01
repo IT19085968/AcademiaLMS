@@ -10,6 +10,7 @@ import com.lms.backend.dto.CourseSuggestionResponse;
 import com.lms.backend.dto.CourseUpdateResponse;
 import com.lms.backend.models.Course;
 // import com.lms.backend.models.Lecturer;
+import com.lms.backend.repositories.CourseRepository;
 import com.lms.backend.services.CourseService;
 
 import org.modelmapper.ModelMapper;
@@ -26,12 +27,16 @@ public class CourseController {
 
     private final CourseService courseService;
 
+    @Autowired
+    private final CourseRepository courseRepository;
+
     @Autowired(required = true)
     private ModelMapper modelMapper;
 
     @Autowired
-    public CourseController(CourseService courseService) {
+    public CourseController(CourseService courseService, CourseRepository courseRepository) {
         this.courseService = courseService;
+        this.courseRepository = courseRepository;
     }
 
     @GetMapping("/")
@@ -65,14 +70,20 @@ public class CourseController {
         courseService.deleteCourse(id);
     }
 
-    @PutMapping("/{id}")
-    private ResponseEntity<CourseUpdateResponse> update(@PathVariable String id,
-            @Validated @RequestBody CourseCreateRequest request) throws Exception {
-        Course course = modelMapper.map(request, Course.class);
-        course.setId(id);
-        Course courseUpdate = courseService.update(course);
-        CourseUpdateResponse courseUpdateResponse = modelMapper.map(courseUpdate, CourseUpdateResponse.class);
-        return new ResponseEntity<>(courseUpdateResponse, HttpStatus.OK);
+    @PutMapping("/")
+    public Course update(@RequestBody Course course)  {
+//        Course course = modelMapper.map(request, Course.class);
+//        course.setId(id);
+//        Course courseUpdate = courseService.update(course);
+//        CourseUpdateResponse courseUpdateResponse = modelMapper.map(courseUpdate, CourseUpdateResponse.class);
+//        return new ResponseEntity<>(courseUpdateResponse, HttpStatus.OK);
+
+        Course oldCourse = courseRepository.findById(course.getId()).orElse(null);
+        oldCourse.setName(course.getName());
+        oldCourse.setDescription(course.getDescription());
+        oldCourse.setDuration(course.getDuration());
+        courseRepository.save(oldCourse);
+        return oldCourse;
     }
 
 }

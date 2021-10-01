@@ -87,15 +87,15 @@ export default class AddInstructor extends Component {
      
   
       if (!this.state.name) {
-        nameError = "Please add the name ";
+        nameError = "Please add the name !";
       }
   
       if (!this.state.email) {
-        emailError = "Please add the email";
+        emailError = "Please add the email!";
       }
 
       if (!this.state.contactNumber ) {
-        emailError = "Please add the contact number";
+        emailError = "Please add the contact number!";
       }
   
   

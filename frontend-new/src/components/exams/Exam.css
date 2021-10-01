@@ -107,6 +107,31 @@ table {
   padding-top: 1%;
 }
 
+th,
+thead {
+  background-color: rgb(91, 95, 95);
+  border: 1px solid black;
+  color: white;
+}
+
+td,
+tbody {
+  background-color: rgb(246, 248, 248);
+  /* background-color: white; */
+  color: rgb(15, 15, 15);
+  border: 1px solid black;
+}
+
+.tableClass,
+tr,
+td,
+th,
+tbody,
+thead,
+table {
+  border: 1px solid black;
+}
+
 /* .btn.waves-effect.waves-effect.waves-blue3 {
   height: 20px;
 } */

@@ -219,7 +219,7 @@ class Exam extends React.Component {
         <div className="examClass">
           <div>
             <table className="table table-bordered tableClass">
-              <thead>
+              <thead className="tableHeader">
                 <tr>
                   <th scope="col">Exam Name</th>
                   <th scope="col">Course</th>
@@ -229,7 +229,7 @@ class Exam extends React.Component {
                   <th scope="col">Options</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="tableBody">
                 {this.state.exams.map((exam) => (
                   <tr key={exam.id}>
                     <td>{exam.title}</td>

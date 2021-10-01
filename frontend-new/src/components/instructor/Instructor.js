@@ -1,5 +1,14 @@
 import React , {useState} from "react";
 import axios from "axios";
+import "../buttons/Buttons.css";
+import Pdf from 'react-to-pdf';
+
+const ref = React.createRef();
+const options = {
+    orientation: 'landscape',
+    unit: 'in',
+    format: [9.5,8]
+};
 
 //var [searchTerm, setsearchTerm] = useState("");
 class InstructorList extends React.Component {
@@ -61,7 +70,9 @@ class InstructorList extends React.Component {
         <div className="container">
           <div class="search-container">
             <form action="/action_page.php">
-              <input type="text" placeholder="Search.." name="search" 
+              <input type="text" 
+                     placeholder="Search.." 
+                     name="search" 
               // onChange={(e) => {setsearchTerm(e.target.value);}}
                />
               <button type="submit">
@@ -72,6 +83,7 @@ class InstructorList extends React.Component {
         </div>
 
         <div className="examClass">
+        <div ref={ref}>
           <table className="table table-bordered tableClass">
             <thead>
               <tr>
@@ -124,7 +136,28 @@ class InstructorList extends React.Component {
             </tbody>
 
           </table>
+          </div>
         </div>
+
+        <br></br>
+          <br></br>
+          <br></br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        <Pdf targetRef={ref} filename="List Of Instructors.pdf" options={options} >
+                        {({ toPdf }) =>  <input type="button" value="Export" onClick={toPdf} className="btn btn-info"/>}
+                    </Pdf>
         
       </div>
     );

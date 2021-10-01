@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Select from "react-select";
 import "./AddSyllabus.css";
+import Syllabus from "./Syllabus";
 
 export default class AddSyllabus extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class AddSyllabus extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       courses: [],
+      syllabusId: "",
       courseId: "",
       courseName: "",
       instructorName: "",
@@ -21,10 +23,62 @@ export default class AddSyllabus extends Component {
 
   componentWillMount() {
     axios.get("http://localhost:8080/courses/").then((res) => {
-      this.setState({
+          this.setState({
         courses: res.data,
       });
     });
+    const { syllabusId } = this.props;
+    const { isEdit } = this.props;
+    const { courseId } = this.props;
+    const { courseName } = this.props;
+    const { instructorName } = this.props;
+    const { numberOfLessons } = this.props;
+    if (isEdit && syllabusId) {
+      this.setState({
+        syllabusId: syllabusId,
+        // courseId: courseId,
+        courseName: courseName,
+        isEdit: isEdit,
+        instructorName: instructorName,
+        numberOfLessons: numberOfLessons,
+        // selectedOption: courseName,
+        // selectedOption: {
+        //   label: courseName,
+        //   value: courseId,
+
+        // },
+      });
+    }
+  }
+
+  componentDidUpdate() {
+    axios.get("http://localhost:8080/courses/").then((res) => {
+          this.setState({
+        courses: res.data,
+      });
+    });
+    const { syllabusId } = this.props;
+    const { isEdit } = this.props;
+    const { courseId } = this.props;
+    const { courseName } = this.props;
+    const { instructorName } = this.props;
+    const { numberOfLessons } = this.props;
+    if (isEdit && syllabusId != this.state.syllabusId) {
+      this.setState({
+        syllabusId: syllabusId,
+        // courseId: courseId,
+        courseName: courseName,
+        isEdit: isEdit,
+        instructorName: instructorName,
+        numberOfLessons: numberOfLessons,
+        // selectedOption: courseName,
+        // selectedOption: {
+        //   label: courseName,
+        //   value: courseId,
+
+        // },
+      });
+    }
   }
 
   onChange(e) {
@@ -41,6 +95,26 @@ export default class AddSyllabus extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    if (this.state.isEdit && this.state.isEdit == true){
+      let UpdatedSyllabus = {
+        syllabusId: this.state.syllabusId,
+        courseId: this.state.courseId,
+        courseName: this.state.courseName,
+        instructorName: this.state.instructorName,
+        numberOfLessons: this.state.numberOfLessons,
+    }
+
+    axios
+      .put("http://localhost:8080/syllabus/", UpdatedSyllabus)
+      .then((response) => {
+        // this.setState({ examId: response.data.id });
+        alert("Data successfully inserted");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+      });
+  }else{
     let Syllabus = {
       
       courseId: this.state.courseId,
@@ -53,7 +127,7 @@ export default class AddSyllabus extends Component {
     axios
       .post("http://localhost:8080/syllabus/", Syllabus)
       .then((response) => {
-        this.setState({ examId: response.data.id });
+        // this.setState({ examId: response.data.id });
         alert("Data successfully inserted");
       })
       .catch((error) => {
@@ -61,6 +135,8 @@ export default class AddSyllabus extends Component {
         alert(error.message);
       });
   }
+  }
+    
 
   render() {
     let options = this.state.courses.map(function (course) {
@@ -101,7 +177,7 @@ export default class AddSyllabus extends Component {
                 />
               </div>
 
-              <div class="row">
+              
                 {/* <label>
               Select Course:
               <select value={this.state.value} onChange={this.selectedCourses}>
@@ -118,6 +194,10 @@ export default class AddSyllabus extends Component {
                 ))}
               </select>
             </label> */}
+
+            {/*Previous code*/}
+
+              {/* <div class="row">
                 <label htmlFor="courses">Courses</label>
                 <Select
                   name="form-field-name"
@@ -129,10 +209,28 @@ export default class AddSyllabus extends Component {
                   labelKey="name"
                   valueKey="id"
                 />
+              </div> */}
+
+              <div class="row">
+                <label htmlFor="Type">Course Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Type"
+                  name="courseName"
+                  value={this.state.courseName}
+                  onChange={this.onChange}
+                  aria-describedby="emailHelp"
+                />
               </div>
 
               <input type="submit" value="Submit" />
+              
             </form>
+            <a class="btn btn" href="/syllabus" role="button">
+        
+            Back to list
+          </a>
           </div>
         </div>
       </div>

@@ -64,12 +64,12 @@ export const SideBarData = [
     icon: <BsIcons.BsNewspaper />,
     cName: "nav-text",
   },
-  {
-    title: "Syllabus",
-    path: "/syllabus",
-    icon: <BsIcons.BsNewspaper />,
-    cName: "nav-text",
-  },
+  // {
+  //   title: "Syllabus",
+  //   path: "/syllabus",
+  //   icon: <BsIcons.BsNewspaper />,
+  //   cName: "nav-text",
+  // },
   // {
   //   title: "Login",
   //   path: "/login",

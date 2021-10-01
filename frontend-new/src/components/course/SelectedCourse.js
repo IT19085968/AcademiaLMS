@@ -157,8 +157,9 @@ class SelectedCourse extends React.Component{
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                <button class="btn btn st-list">
-               Enroll Now</button>
+                <a class="btn btn-primary" href="/syllabus" role="button">
+            View Syllabus Details
+          </a>
 
              </div>
         );

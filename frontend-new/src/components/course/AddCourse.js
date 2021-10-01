@@ -21,15 +21,7 @@ class AddCourse extends React.Component {
       selectedLecturers: [],
       id: "",
       isEdit: false,
-      // courseId:"",
-      // lecturerId:"",
-      // lecturerName:"",
 
-      // errors:{
-      //   cname:"",
-      //   cdescription:"",
-      //   cduration:"",
-      // }
     }
   }
 
@@ -53,12 +45,7 @@ class AddCourse extends React.Component {
             ? 'Course Description must be at least 5 characters long!'
             : '';
         break;
-      // case 'duration': 
-      //   errors.cduration = 
-      //     value.length < 8
-      //       ? 'Password must be at least 8 characters long!'
-      //       : '';
-      //   break;
+
       default:
         break;
     }
@@ -146,26 +133,11 @@ class AddCourse extends React.Component {
   }
 
   formValidation = () => {
-    // const {cname, cdescription} = this.state;
-    // let isValid = true;
-    // const errors ={};
-    // if(cname.trim().length < 5){
-    //   errors.cnameLength = "Course Name must be of length 5 or higher";
-    //   isValid=false;
-    // }
-
-    // if(cdescription.trim.length < 5){
-    //   errors.cdescriptionLength = "Description must be of length 5 or higher";
-    //   isValid=false;
-    // }
-
-    // this.setState({errors});
-    // return isValid;
 
     let nameError = "";
     let descriptionError = "";
     let durationError = "";
-    // let passwordError = "";
+
 
     if (!this.state.cname) {
       nameError = "Please add the name ";
@@ -204,7 +176,7 @@ class AddCourse extends React.Component {
           name: courseName,
           description: courseDescription,
           duration: duration,
-          // lecturers:selectedLecturers
+
         }
         console.log('data to send', updatedCourse);
         axios.put('http://localhost:8080/courses/', updatedCourse)
@@ -235,8 +207,6 @@ class AddCourse extends React.Component {
             alert(error.message)
           })
       }
-
-
     }
 
   }
@@ -276,27 +246,13 @@ class AddCourse extends React.Component {
                 </div>
               </div>
 
-              {/* <div class='row'>
-        <label htmlFor="lecturers" >Lecturers</label>
-        <Select
-        options={this.state.options}
-        onChange={this.selectedLecturers}
-        className="basic-multi-select"
-        isMulti
-        />
-      </div> */}
+
 
 
 
               <input type="submit" value="Add Course" />
 
-              {/* {Object.keys(errors).map((key) => {
-            return (
-              <div style={{ color: "red" }} key={key}>
-                {errors[key]}
-              </div>
-            );
-          })} */}
+
 
             </form>
           </div>

@@ -19,7 +19,6 @@ const ref = React.createRef();
 const options = {
   orientation: 'landscape',
   unit: 'in',
-  // format: [9.5, 8]
   format: [7, 7],
 };
 
@@ -29,16 +28,16 @@ class Course extends React.Component {
     this.onClick = this.onClick.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
+
     this.onSearch = this.onSearch.bind(this);
 
     this.state = {
       courses: [],
-      // courseId:"",
+
       id: "",
-      // courseName:"",
+
       name: "",
-      // 
+
       description: "",
       duration: "",
       isEdit: false,
@@ -108,15 +107,7 @@ class Course extends React.Component {
     });
   }
 
-  // ViewCourse = (id) =>{
-  //   axios.get("http://localhost:8080/courses/" +id)
-  //   .then(responce =>{
-  //     if(responce.data != null){
-  //         // alert("Course deleted successfully");
-  //         this.setState({ courses: responce.data });
-  //     }
-  //   });
-  // }
+
 
   render() {
     return (
@@ -390,7 +381,7 @@ class Course extends React.Component {
                     name="searchCourse"
                     value={this.state.searchCourse}
                     onChange={this.onChange}
-                  // aria-describedby="emailHelp"
+
                   />
                 </div>
                 <button type="submit">
@@ -407,7 +398,7 @@ class Course extends React.Component {
                   <th scope="col">Course Name</th>
                   <th scope="col">Description</th>
                   <th scope="col">Duration</th>
-                  {/* <th scope="col">Instructors</th> */}
+
                 </tr>
               </thead>
 
@@ -419,16 +410,7 @@ class Course extends React.Component {
                     <td>{course.duration}</td>
 
 
-                    {/* <td> <a class="btn btn" href="/edit-course" role="button" 
-                  onClick={(e) =>
-                    this.editCourse(
-                      course.courseName,
-                      course.courseDescription,
-                      course.duration
-                    )
-                  }>
-                  Edit Course
-                  </a></td> */}
+
 
                     <td>
                       <button
@@ -458,17 +440,7 @@ class Course extends React.Component {
           </div>
         </div>
 
-        {/* {this.state.courses.length > 0 &&
-            this.state.courses.map((item, index) => (
-              <div key={index} className="card mb-3">
-                <div className="p-3">
-                  <h5>Course Name : {item.name}</h5>
-                  <h5>Description : {item.description}</h5>
-                  <h5>Duration : {item.duration}</h5>
-                  <br></br>
-                </div>
-              </div>
-            ))} */}
+
         <br></br>
         <br></br>
         <br></br>
@@ -489,9 +461,7 @@ class Course extends React.Component {
           Add Course
         </a>
         &nbsp;&nbsp;&nbsp;
-        {/* <a class="btn btn" href="/edit-category" role="button">
-            Edit Course
-          </a> */}
+
 
         <Pdf targetRef={ref} filename="CourseList.pdf" options={options} >
           {({ toPdf }) => <input type="button" value="Export" onClick={toPdf} className="btn btn-info" />}

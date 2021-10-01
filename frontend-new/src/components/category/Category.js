@@ -12,14 +12,14 @@ const ref = React.createRef();
 const options = {
   orientation: 'landscape',
   unit: 'in',
-  format: [4.5,4.5]
+  format: [4.5, 4.5]
 };
 
 class Category extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.handleExportWithComponent = this.handleExportWithComponent.bind(this);
+
     this.onClick = this.onClick.bind(this);
     this.state = {
       categories: [],
@@ -30,11 +30,7 @@ class Category extends React.Component {
       isEdit: false,
       isAdd: false
     };
-    // this.deleteCategory = this.deleteCategory.bind(this);
 
-    //   const  handleExportWithComponent  = (event) => {
-    //     pdfExportComponent.current.save();
-    // }
 
   }
 
@@ -46,9 +42,7 @@ class Category extends React.Component {
       });
   }
 
-  //   handleExportWithComponent  = (event) => {
-  //     pdfExportComponent.current.save();
-  // }
+
 
   onClick(e) {
     e.preventDefault();
@@ -71,7 +65,7 @@ class Category extends React.Component {
 
   editCategory(categoryId, categoryName, categoryDescription, courseId) {
     this.setState({
-      // quizId: "61279e68495de239a7eccaca",
+
       isEdit: true,
       categoryId: categoryId,
       categoryName: categoryName,
@@ -123,7 +117,7 @@ class Category extends React.Component {
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        {/* <PDFExport  ref={pdfExportComponent}  paperSize="A4">  */}
+
         <div className="container">
 
 
@@ -131,13 +125,11 @@ class Category extends React.Component {
             <table className="table table-bordered tableClass">
               <tbody>
                 {this.state.categories.map((category) => (
-                  //  <div className="p-3" onClick={e=>this.navigateCoursePage(e, item._id)}>
+
                   <tr key={category.id}>
                     <td><h3>{category.name}</h3></td>
 
-                    {/* <td> <a class="btn btn" href="/edit-category" role="button">
-            Edit Category
-          </a></td> */}
+
 
                     <td>
                       <Link to={"edit/" + category.id}

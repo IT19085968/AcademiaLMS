@@ -72,22 +72,7 @@ class AddCategory extends React.Component {
   }
 
 
-  //   componentDidMount(){
-  //     axios.get('http://localhost:8080/category/')
-  //     .then(response=>{
-  //         this.setState({categories: response.data.data},()=>{
-  //             let data=[];
-  //             this.state.categories.map((item,index)=>{
-  //                 let category={
-  //                     value:item._id,
-  //                     label:item.trip_type
-  //                 }
-  //                 data.push(category)
-  //             });
-  //             this.setState({options:data});
-  //         })
-  //     })
-  // }
+
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });

@@ -18,4 +18,7 @@ public class Instructor {
     private String email;
     private String contactNumber;
     private String[] Courses;
+    private String courseId;
+    private String courseName;
+
 }

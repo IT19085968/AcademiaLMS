@@ -17,15 +17,17 @@ export default class AddInstructor extends Component {
         courses:[],
         selectedCourses:[],
         instructorId: "",
+        courseId:"",
+        courseName:"",
         //errors:{}
 
       };
     }
   
     componentWillMount() {
-      axios.get("http://localhost:8080/instructors/").then((res) => {
+      axios.get("http://localhost:8080/courses/").then((res) => {
         this.setState({
-          instructors: res.data,
+          courses: res.data,
         });
       });
     }
@@ -121,6 +123,8 @@ export default class AddInstructor extends Component {
                 name: this.state.name,
                 email: this.state.email,
                 contactNumber: this.state.contactNumber,
+                courseId :this.state.courseId,
+                courseName : this.state.courseName,
               
               };
                 axios
@@ -177,6 +181,7 @@ export default class AddInstructor extends Component {
                   <label htmlFor="Type">Instructor Email</label>
                   <input
                     type="text"
+                    placeholder="Email"
                     class="form-control"
                     id="Type"
                     name="email"
@@ -193,6 +198,7 @@ export default class AddInstructor extends Component {
                   <label htmlFor="Type">Contact Number</label>
                   <input
                     type="text"
+                    placeholder="Contact Number"
                     class="form-control"
                     id="Type"
                     name="contactNumber"
@@ -209,6 +215,7 @@ export default class AddInstructor extends Component {
                   <label htmlFor="courses">Courses</label>
                   <Select
                     name="form-field-name"
+                    placeholder="Select the course"
                     options={options}
                     onChange={this.handleChange}
                     clearable={this.state.clearable}

@@ -112,7 +112,7 @@ class Exam extends React.Component {
     };
   }
 
-  editExam(examId, title, courseName, examDate, courseId, quizId) {
+  editExam(examId, title, courseName, examDate, courseId, quizId, startTime) {
     this.setState({
       // quizId: "61279e68495de239a7eccaca",
       isEdit: true,
@@ -123,6 +123,7 @@ class Exam extends React.Component {
       examDate: examDate,
       courseId: courseId,
       quizId: quizId,
+      startTime: startTime,
     });
   }
 
@@ -233,7 +234,7 @@ class Exam extends React.Component {
                   <tr key={exam.id}>
                     <td>{exam.title}</td>
                     <td>{exam.courseName}</td>
-                    <td>{exam.type}</td>
+                    <td>Quiz</td>
                     <td>{exam.examDate}</td>
                     <td>{exam.startTime}</td>
                     <td>
@@ -251,7 +252,8 @@ class Exam extends React.Component {
                             exam.courseName,
                             exam.examDate,
                             exam.courseId,
-                            exam.quizId
+                            exam.quizId,
+                            exam.startTime
                           )
                         }
                         className="btn waves-effect waves-blue2"
@@ -297,6 +299,7 @@ class Exam extends React.Component {
               courseId={this.state.courseId}
               courseName={this.state.courseName}
               examDate={this.state.examDate}
+              startTime={this.state.startTime}
               quizId={this.state.quizId}
               isEditQuiz={this.state.isEditQuiz}
             />
@@ -312,6 +315,7 @@ class Exam extends React.Component {
               title={this.state.title}
               courseName={this.state.courseName}
               examDate={this.state.examDate}
+              startTime={this.state.startTime}
               courseId={this.state.courseId}
               quizId={this.state.quizId}
             />
@@ -357,6 +361,7 @@ class Exam extends React.Component {
                   type="submit"
                   className="btn waves-effect waves-blue3"
                   // onClick={this.onClick}
+                  disabled={!this.state.selectedCourse}
                 >
                   Search
                 </button>
@@ -385,7 +390,7 @@ class Exam extends React.Component {
                     <tr key={exam.id}>
                       <td>{exam.title}</td>
                       <td>{exam.courseName}</td>
-                      <td>{exam.type}</td>
+                      <td>Quiz</td>
                       <td>{exam.examDate}</td>
                       <td>{exam.startTime}</td>
                     </tr>

@@ -39,6 +39,7 @@ class AddQuiz extends React.Component {
       type: "",
 
       isEditQuiz: false,
+      errors: {},
     };
   }
 
@@ -48,6 +49,7 @@ class AddQuiz extends React.Component {
     const { courseId } = this.props;
     const { courseName } = this.props;
     const { examDate } = this.props;
+    const { startTime } = this.props;
     const { quizId } = this.props;
     const { isEditQuiz } = this.props;
 
@@ -62,6 +64,7 @@ class AddQuiz extends React.Component {
         courseId: courseId,
         courseName: courseName,
         examDate: examDate,
+        startTime: startTime,
         isEditQuiz: isEditQuiz,
         // quizID: quizID,
       });
@@ -112,6 +115,7 @@ class AddQuiz extends React.Component {
     const { courseId } = this.props;
     const { courseName } = this.props;
     const { examDate } = this.props;
+    const { startTime } = this.props;
     const { quizId } = this.props;
     const { isEditQuiz } = this.props;
 
@@ -126,6 +130,7 @@ class AddQuiz extends React.Component {
         courseId: courseId,
         courseName: courseName,
         examDate: examDate,
+        startTime: startTime,
         isEditQuiz: isEditQuiz,
         // quizID: quizID,
       });
@@ -257,7 +262,7 @@ class AddQuiz extends React.Component {
       examDate: this.state.examDate,
 
       categoryId: null,
-      startTime: null,
+      startTime: this.state.startTime,
       endTime: null,
       instructions: null,
       type: null,
@@ -281,114 +286,147 @@ class AddQuiz extends React.Component {
   //     });
   //   }
 
+  formValidation = () => {
+    const { question1, answers1, answers2, answers3, correctAnswer1 } =
+      this.state;
+    let isValid = true;
+    const errors = {};
+    if (question1.trim().length < 1) {
+      errors.q1Length = "First question can't be empty!";
+      isValid = false;
+    }
+
+    if (
+      answers1.trim().length < 1 ||
+      answers2.trim().length < 1 ||
+      answers3.trim().length < 1
+    ) {
+      errors.a1Length = "Please add answers to the first question!";
+      isValid = false;
+    }
+
+    if (correctAnswer1.trim().length < 1) {
+      errors.cAnswLength = "Please add the correct answer!";
+      isValid = false;
+    }
+
+    this.setState({ errors });
+    return isValid;
+  };
+
   onSubmit(e, oldexamId) {
     e.preventDefault();
 
     const { isEditQuiz } = this.props;
     const { examId } = this.props;
 
-    if (isEditQuiz && isEditQuiz == true) {
-      let quizUpdated = {
-        id: this.state.quizId,
-        examId: examId,
-        questions: [
-          {
-            questionNumber: 1,
-            question: this.state.question1,
-            answers: [
-              this.state.answers1,
-              this.state.answers2,
-              this.state.answers3,
-            ],
-            correctAnswer: this.state.correctAnswer1,
-          },
-          {
-            questionNumber: 2,
-            question: this.state.question2,
-            answers: [
-              this.state.answers4,
-              this.state.answers5,
-              this.state.answers6,
-            ],
-            correctAnswer: this.state.correctAnswer2,
-          },
-          {
-            questionNumber: 3,
-            question: this.state.question3,
-            answers: [
-              this.state.answers7,
-              this.state.answers8,
-              this.state.answers9,
-            ],
-            correctAnswer: this.state.correctAnswer3,
-          },
-        ],
-      };
+    const isValid = this.formValidation();
 
-      axios
-        .put("http://localhost:8080/quiz/", quizUpdated)
-        .then((response) => {
-          // this.setState({ examId: response.data.id });
-          alert("Data successfully inserted");
-        })
-        .catch((error) => {
-          console.log(error.message);
-          alert(error.message);
-        });
-    } else {
-      let quizNew = {
-        examId: oldexamId,
-        questions: [
-          {
-            questionNumber: 1,
-            question: this.state.question1,
-            answers: [
-              this.state.answers1,
-              this.state.answers2,
-              this.state.answers3,
-            ],
-            correctAnswer: this.state.correctAnswer1,
-          },
-          {
-            questionNumber: 2,
-            question: this.state.question2,
-            answers: [
-              this.state.answers4,
-              this.state.answers5,
-              this.state.answers6,
-            ],
-            correctAnswer: this.state.correctAnswer2,
-          },
-          {
-            questionNumber: 3,
-            question: this.state.question3,
-            answers: [
-              this.state.answers7,
-              this.state.answers8,
-              this.state.answers9,
-            ],
-            correctAnswer: this.state.correctAnswer3,
-          },
-        ],
-      };
+    if (isValid) {
+      if (isEditQuiz && isEditQuiz == true) {
+        let quizUpdated = {
+          id: this.state.quizId,
+          examId: examId,
+          questions: [
+            {
+              questionNumber: 1,
+              question: this.state.question1,
+              answers: [
+                this.state.answers1,
+                this.state.answers2,
+                this.state.answers3,
+              ],
+              correctAnswer: this.state.correctAnswer1,
+            },
+            {
+              questionNumber: 2,
+              question: this.state.question2,
+              answers: [
+                this.state.answers4,
+                this.state.answers5,
+                this.state.answers6,
+              ],
+              correctAnswer: this.state.correctAnswer2,
+            },
+            {
+              questionNumber: 3,
+              question: this.state.question3,
+              answers: [
+                this.state.answers7,
+                this.state.answers8,
+                this.state.answers9,
+              ],
+              correctAnswer: this.state.correctAnswer3,
+            },
+          ],
+        };
 
-      axios
-        .post("http://localhost:8080/quiz/", quizNew)
-        .then((response) => {
-          this.setState({ quizId: response.data.id });
-          console.log(response.data.id);
-          alert("Data successfully inserted");
-        })
-        .catch((error) => {
-          console.log(error.message);
-          alert(error.message);
-        });
+        axios
+          .put("http://localhost:8080/quiz/", quizUpdated)
+          .then((response) => {
+            // this.setState({ examId: response.data.id });
+            alert("Data successfully inserted");
+          })
+          .catch((error) => {
+            console.log(error.message);
+            alert(error.message);
+          });
+      } else {
+        let quizNew = {
+          examId: oldexamId,
+          questions: [
+            {
+              questionNumber: 1,
+              question: this.state.question1,
+              answers: [
+                this.state.answers1,
+                this.state.answers2,
+                this.state.answers3,
+              ],
+              correctAnswer: this.state.correctAnswer1,
+            },
+            {
+              questionNumber: 2,
+              question: this.state.question2,
+              answers: [
+                this.state.answers4,
+                this.state.answers5,
+                this.state.answers6,
+              ],
+              correctAnswer: this.state.correctAnswer2,
+            },
+            {
+              questionNumber: 3,
+              question: this.state.question3,
+              answers: [
+                this.state.answers7,
+                this.state.answers8,
+                this.state.answers9,
+              ],
+              correctAnswer: this.state.correctAnswer3,
+            },
+          ],
+        };
+
+        axios
+          .post("http://localhost:8080/quiz/", quizNew)
+          .then((response) => {
+            this.setState({ quizId: response.data.id });
+            console.log(response.data.id);
+            alert("Data successfully inserted");
+          })
+          .catch((error) => {
+            console.log(error.message);
+            alert(error.message);
+          });
+      }
     }
   }
 
   render() {
     const { examId } = this.props;
     const { isEditQuiz } = this.props;
+    const { errors } = this.state;
     return (
       <div className="quizContent">
         <br></br>
@@ -621,6 +659,13 @@ class AddQuiz extends React.Component {
           ) : (
             ""
           )}
+          {Object.keys(errors).map((key) => {
+            return (
+              <div style={{ color: "red" }} key={key}>
+                {errors[key]}
+              </div>
+            );
+          })}
         </form>
       </div>
     );

@@ -39,6 +39,7 @@ export default class AddExam extends Component {
       isEdit: false,
       quizId: "",
       isEditQuiz: false,
+      errors: {},
     };
   }
 
@@ -54,6 +55,7 @@ export default class AddExam extends Component {
     const { title } = this.props;
     const { courseName } = this.props;
     const { examDate } = this.props;
+    const { startTime } = this.props;
     const { courseId } = this.props;
     const { quizId } = this.props;
     if (isEdit && examId) {
@@ -64,6 +66,7 @@ export default class AddExam extends Component {
         courseName: courseName,
         isEdit: isEdit,
         quizId: quizId,
+        startTime: startTime,
         // selectedOption: courseName,
         courseId: courseId,
         selectedOption: {
@@ -98,6 +101,7 @@ export default class AddExam extends Component {
     const { examDate } = this.props;
     const { courseId } = this.props;
     const { quizId } = this.props;
+    const { startTime } = this.props;
     if (isEdit && examId && this.state.examId != examId) {
       this.setState({
         examId: examId,
@@ -106,6 +110,7 @@ export default class AddExam extends Component {
         courseName: courseName,
         isEdit: isEdit,
         quizId: quizId,
+        startTime: startTime,
         // selectedOption: courseName,
         courseId: courseId,
         selectedOption: {
@@ -148,62 +153,93 @@ export default class AddExam extends Component {
     });
   }
 
+  formValidation = () => {
+    const { title, examDate, courseName, startTime } = this.state;
+    let isValid = true;
+    const errors = {};
+    if (title.trim().length < 6) {
+      errors.titleLength = "Title must be more than 6 caharacters!";
+      isValid = false;
+    }
+
+    if (examDate.trim().length < 3) {
+      errors.dateLength = "Invalid date!";
+      isValid = false;
+    }
+
+    if (courseName.trim().length < 3) {
+      errors.courseLength = "Please select a course!";
+      isValid = false;
+    }
+
+    if (startTime.trim().length < 2) {
+      errors.timeLength = "Please enter a valid time!";
+      isValid = false;
+    }
+    this.setState({ errors });
+    return isValid;
+  };
+
   onSubmit(e) {
     e.preventDefault();
+    const isValid = this.formValidation();
 
-    if (this.state.isEdit && this.state.isEdit == true) {
-      let examNew = {
-        id: this.state.examId,
-        title: this.state.title,
-        courseId: this.state.courseId,
-        quizId: this.state.quizId,
-        courseName: this.state.courseName,
-        examDate: this.state.examDate,
+    if (isValid) {
+      if (this.state.isEdit && this.state.isEdit == true) {
+        let examNew = {
+          id: this.state.examId,
+          title: this.state.title,
+          courseId: this.state.courseId,
+          quizId: this.state.quizId,
+          courseName: this.state.courseName,
+          examDate: this.state.examDate,
 
-        categoryId: null,
-        startTime: null,
-        endTime: null,
-        instructions: null,
-        type: null,
-      };
+          categoryId: null,
+          startTime: this.state.startTime,
+          endTime: null,
+          instructions: null,
+          type: null,
+        };
 
-      axios
-        .put("http://localhost:8080/exams/", examNew)
-        .then((response) => {
-          // this.setState({ examId: response.data.id });
-          alert("Data successfully inserted");
-        })
-        .catch((error) => {
-          console.log(error.message);
-          alert(error.message);
-        });
-    } else {
-      let Exam = {
-        title: this.state.title,
-        courseId: this.state.courseId,
-        courseName: this.state.courseName,
-        categoryId: this.state.categoryId,
-        examDate: this.state.examDate,
-        startTime: this.state.startTime,
-        endTime: this.state.endTime,
-        instructions: this.state.instructions,
-        type: this.state.type,
-      };
+        axios
+          .put("http://localhost:8080/exams/", examNew)
+          .then((response) => {
+            // this.setState({ examId: response.data.id });
+            alert("Data successfully inserted");
+          })
+          .catch((error) => {
+            console.log(error.message);
+            alert(error.message);
+          });
+      } else {
+        let Exam = {
+          title: this.state.title,
+          courseId: this.state.courseId,
+          courseName: this.state.courseName,
+          categoryId: this.state.categoryId,
+          examDate: this.state.examDate,
+          startTime: this.state.startTime,
+          endTime: this.state.endTime,
+          instructions: this.state.instructions,
+          type: this.state.type,
+        };
 
-      axios
-        .post("http://localhost:8080/exams/", Exam)
-        .then((response) => {
-          this.setState({ examId: response.data.id });
-          alert("Data successfully inserted");
-        })
-        .catch((error) => {
-          console.log(error.message);
-          alert(error.message);
-        });
+        axios
+          .post("http://localhost:8080/exams/", Exam)
+          .then((response) => {
+            this.setState({ examId: response.data.id });
+            alert("Data successfully inserted");
+          })
+          .catch((error) => {
+            console.log(error.message);
+            alert(error.message);
+          });
+      }
     }
   }
 
   render() {
+    const { errors } = this.state;
     let options = this.state.courses.map(function (course) {
       return { value: course.id, label: course.name };
     });
@@ -227,6 +263,7 @@ export default class AddExam extends Component {
                   class="form-control"
                   id="Type"
                   name="title"
+                  placeholder="Enter title"
                   value={this.state.title}
                   onChange={this.onChange}
                   aria-describedby="emailHelp"
@@ -274,8 +311,26 @@ export default class AddExam extends Component {
                   onChange={this.onChange}
                 />
               </div>
+              <div class="row">
+                <label htmlFor="Type">Start Time</label>
+                <input
+                  type="time"
+                  class="form-control"
+                  id="Type"
+                  name="startTime"
+                  value={this.state.startTime}
+                  onChange={this.onChange}
+                />
+              </div>
 
               <input type="submit" value="Submit" />
+              {Object.keys(errors).map((key) => {
+                return (
+                  <div style={{ color: "red" }} key={key}>
+                    {errors[key]}
+                  </div>
+                );
+              })}
             </form>
           </div>
         </div>
@@ -287,6 +342,7 @@ export default class AddExam extends Component {
               courseId={this.state.courseId}
               courseName={this.state.courseName}
               examDate={this.state.examDate}
+              startTime={this.state.startTime}
               quizId={this.state.quizId}
               isEditQuiz={this.state.isEditQuiz}
             />

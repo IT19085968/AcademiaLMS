@@ -12,6 +12,7 @@ import spring from "../images/7.jpg";
 import html5 from "../images/8.jpg";
 import "./Course.css";
 import Pdf from 'react-to-pdf';
+import AddCourse from './AddCourse';
 
 const ref = React.createRef();
 const options = {
@@ -25,7 +26,20 @@ class Course extends React.Component {
     super(props);
     this.state = {
       courses: [],
+      courseId:"",
+      courseName:"",
+      courseDescription:"",
+      duration:"",
+      isEdit:false,
+      isAdd: true
     };
+  }
+
+  onClick(e) {
+    e.preventDefault();
+    this.setState({
+      isAdd: true,
+    });
   }
 
   componentDidMount() {
@@ -45,6 +59,28 @@ class Course extends React.Component {
       }
     });
   }
+
+  editCourse(courseId, courseName, courseDescription, duration) {
+    this.setState({
+      isEdit: true,
+      courseId: courseId,
+      courseName: courseName,
+      courseDescription: courseDescription,
+      duration: duration,
+    });
+  }
+
+
+
+  // ViewCourse = (id) =>{
+  //   axios.get("http://localhost:8080/courses/" +id)
+  //   .then(responce =>{
+  //     if(responce.data != null){
+  //         // alert("Course deleted successfully");
+  //         this.setState({ courses: responce.data });
+  //     }
+  //   });
+  // }
 
   render() {
     return (
@@ -322,7 +358,14 @@ class Course extends React.Component {
                   <td>{course.duration}</td>
                   
 
-                  <td> <a class="btn btn" href="/edit-course" role="button">
+                  <td> <a class="btn btn" href="/edit-course" role="button" 
+                  onClick={(e) =>
+                    this.editCourse(
+                      course.name,
+                      course.description,
+                      course.duration
+                    )
+                  }>
                   Edit Course
                   </a></td>
 
@@ -376,6 +419,21 @@ class Course extends React.Component {
 <Pdf targetRef={ref} filename="CourseList.pdf" options={options} >
                         {({ toPdf }) =>  <input type="button" value="Export" onClick={toPdf} className="btn btn-info"/>}
                     </Pdf>
+
+                    <div className="col s6">
+                    {this.state.isEdit ? (
+            <AddCourse
+              courseId={this.state.courseId}
+              isEdit={this.state.isEdit}
+              courseName={this.state.courseName}
+              courseDescription={this.state.courseDescription}
+              duration={this.state.duration}
+              courseId={this.state.courseId}
+            />
+          ) : (
+            ""
+          )}
+        </div>
         </div>
       
     );

@@ -6,6 +6,7 @@ import "./AddCategory.css";
 import {Link} from 'react-router-dom';
 import {PDFExport,savePDF} from '@progress/kendo-react-pdf';
 import Pdf from 'react-to-pdf';
+import Addcategory from './AddCategory';
 
 const ref = React.createRef();
 const options = {
@@ -19,8 +20,15 @@ class Category extends React.Component {
   constructor(props) {
     super(props);
     // this.handleExportWithComponent = this.handleExportWithComponent.bind(this);
+    this.onClick=this.onClick.bind(this);
     this.state = {
       categories: [],
+      categoryId:"",
+      categoryName: "",
+      categoryDescription: "",
+      courseId:"",
+      isEdit: false,
+      isAdd: false
     };
     // this.deleteCategory = this.deleteCategory.bind(this);
     
@@ -42,6 +50,12 @@ class Category extends React.Component {
 //     pdfExportComponent.current.save();
 // }
 
+onClick(e) {
+  e.preventDefault();
+  this.setState({
+    isAdd: true,
+  });
+}
 
 deleteCategory = (id) =>{
   axios.delete("http://localhost:8080/categories/" +id)
@@ -52,6 +66,17 @@ deleteCategory = (id) =>{
           categories: this.state.categories.filter(category => category.id !== id)
         });
     }
+  });
+}
+
+editCategory(categoryId, categoryName, categoryDescription, courseId) {
+  this.setState({
+    // quizId: "61279e68495de239a7eccaca",
+    isEdit: true,
+    categoryId: categoryId,
+    categoryName: categoryName,
+    categoryDescription: categoryDescription,
+    courseId: courseId,
   });
 }
 
@@ -115,7 +140,16 @@ deleteCategory = (id) =>{
           </a></td> */}
 
           <td>
-            <Link to={"edit/"+category.id} className="btn btn" role="button">Edit Category</Link>
+            <Link to={"edit/"+category.id} 
+            onClick={(e) =>
+              this.editCategory(
+                category.id,
+                category.name,
+                category.description,
+                category.courses
+              )
+            }
+            className="btn btn" role="button">Edit Category</Link>
           </td>
 
          <td> <a class="btn btn" href="/delete-category" role="button"   onClick={this.deleteCategory.bind(this, category.id)}>
@@ -156,22 +190,28 @@ deleteCategory = (id) =>{
             Add Category
           </a>
 
-          {/* <a class="btn btn" href="/add-category" role="button" onClick={handleExportWithComponent}>
-            Generate Report
-          </a> */}
+      
 
 <Pdf targetRef={ref} filename="CategoryList.pdf" options={options} >
                         {({ toPdf }) =>  <input type="button" value="Export" onClick={toPdf} className="btn btn-info"/>}
                     </Pdf>
-        
-
-
-          &nbsp;&nbsp;&nbsp;
-          {/* <a class="btn btn" href="/edit-category" role="button">
-            Edit Category
-          </a> */}
+        &nbsp;&nbsp;&nbsp;
+         
         </div>
-        {/* </PDFExport> */}
+
+        <div className="col s6">
+          {this.state.isEdit ? (
+            <Addcategory
+              categoryId={this.state.categoryId}
+              isEdit={this.state.isEdit}
+              categoryDescription={this.state.categoryDescription}
+              courseId={this.state.courseId}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+       
       </div>
     );
   }

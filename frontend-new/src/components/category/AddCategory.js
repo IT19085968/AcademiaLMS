@@ -55,21 +55,21 @@ class AddCategory extends React.Component {
   }
 
 
-  // componentDidMount() {
-  //   axios.get('http://localhost:8080/courses/suggestion').then((response) => {
-  //     this.setState({ courses: response.data }, () => {
-  //       let data = [];
-  //       this.state.courses.map((item, index) => {
-  //         let course = {
-  //           value: item._id,
-  //           label: item.name,
-  //         };
-  //         data.push(course);
-  //       });
-  //       this.setState({ options: data });
-  //     });
-  //   });
-  // }
+  componentDidMount() {
+    axios.get('http://localhost:8080/courses/suggestion').then((response) => {
+      this.setState({ courses: response.data }, () => {
+        let data = [];
+        this.state.courses.map((item, index) => {
+          let course = {
+            value: item._id,
+            label: item.name,
+          };
+          data.push(course);
+        });
+        this.setState({ options: data });
+      });
+    });
+  }
 
 
 //   componentDidMount(){

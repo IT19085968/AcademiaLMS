@@ -358,16 +358,31 @@ class Course extends React.Component {
                   <td>{course.duration}</td>
                   
 
-                  <td> <a class="btn btn" href="/edit-course" role="button" 
+                  {/* <td> <a class="btn btn" href="/edit-course" role="button" 
                   onClick={(e) =>
                     this.editCourse(
-                      course.name,
-                      course.description,
+                      course.courseName,
+                      course.courseDescription,
                       course.duration
                     )
                   }>
                   Edit Course
-                  </a></td>
+                  </a></td> */}
+
+                  <td>
+                  <button
+                        onClick={(e) =>
+                          this.editCourse(
+                            course.name,
+                            course.description,
+                            course.duration
+                          )
+                        }
+                        className="btn waves-effect waves-blue2"
+                      >
+                        Edit Exam
+                      </button>
+                  </td>
 
                   <td> <a class="btn btn" href="/delete-course" role="button"   onClick={this.deleteCourse.bind(this, course.id)}>
                   Delete Course
@@ -428,7 +443,7 @@ class Course extends React.Component {
               courseName={this.state.courseName}
               courseDescription={this.state.courseDescription}
               duration={this.state.duration}
-              courseId={this.state.courseId}
+              
             />
           ) : (
             ""

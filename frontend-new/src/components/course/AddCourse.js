@@ -19,7 +19,8 @@ class AddCourse extends React.Component{
           lecturers:[],
           options:[],
           selectedLecturers:[],
-          // isEdit: false,
+          courseId:"",
+          isEdit: false,
           // courseId:"",
           // lecturerId:"",
           // lecturerName:"",
@@ -65,7 +66,7 @@ class AddCourse extends React.Component{
     this.setState({errors, [name]: value});
   }
 
-  componentDidMount(){
+  componentWillMount(){
     axios.get('http://localhost:8080/lecturer/suggestion')
     .then(response=>{
         this.setState({lecturers: response.data},()=>{
@@ -80,6 +81,58 @@ class AddCourse extends React.Component{
             this.setState({options:data});
         })
     })
+
+
+    const { courseId } = this.props;
+    const { isEdit } = this.props;
+    const { courseName } = this.props;
+    const { courseDescription } = this.props;
+    const { duration} = this.props;
+
+    if(courseId){
+        this.setState({
+          courseId : courseId,
+          isEdit : isEdit,
+          cname : courseName,
+          cdescription : courseDescription,
+          cduration : duration
+        })
+    }
+}
+
+
+componentDidUpdate(){
+  axios.get('http://localhost:8080/lecturer/suggestion')
+    .then(response=>{
+        this.setState({lecturers: response.data},()=>{
+            let data=[];
+            this.state.lecturers.map((item,index)=>{
+                let lecturer={
+                    value:item._id,
+                    label:item.name
+                }
+                data.push(lecturer)
+            });
+            this.setState({options:data});
+        })
+    })
+
+
+    const { courseId } = this.props;
+    const { isEdit } = this.props;
+    const { courseName } = this.props;
+    const { courseDescription } = this.props;
+    const { duration} = this.props;
+
+    if(courseId != this.state.courseId){
+        this.setState({
+          courseId : courseId,
+          isEdit : isEdit,
+          cname : courseName,
+          cdescription : courseDescription,
+          cduration : duration
+        })
+    }
 }
 
    
@@ -137,23 +190,53 @@ class AddCourse extends React.Component{
     onSubmit(e){
       e.preventDefault();
       const isValid = this.formValidation();
+      const { courseId } = this.props;
+      const { isEdit } = this.props;
+      const { courseName } = this.props;
+      const { courseDescription } = this.props;
+      const { duration} = this.props;
 
       if(isValid){
-      let course={
-        name:this.state.cname,
-        description:this.state.cdescription,
-        duration:this.state.cduration,
-        lecturers:this.state.selectedLecturers
-    }
-    console.log('data to send',course);
-    axios.post('http://localhost:8080/courses/',course)
-    .then(response=>{
-        alert('Data successfully inserted')
-    })
-    .catch(error=>{
-        console.log(error.message);
-        alert(error.message)
-    })
+
+        if(isEdit==true){
+          let updatedCourse={
+            courseId:courseId,
+            name:courseName,
+            description:courseDescription,
+            duration:duration,
+            // lecturers:selectedLecturers
+        }
+        console.log('data to send',updatedCourse);
+        axios.put('http://localhost:8080/courses/',updatedCourse)
+        .then(response=>{
+            alert('Data successfully inserted')
+        })
+        .catch(error=>{
+            console.log(error.message);
+            alert(error.message)
+        })
+      
+        }
+
+        else{
+          let course={
+            name:this.state.cname,
+            description:this.state.cdescription,
+            duration:this.state.cduration,
+            lecturers:this.state.selectedLecturers
+        }
+        console.log('data to send',course);
+        axios.post('http://localhost:8080/courses/',course)
+        .then(response=>{
+            alert('Data successfully inserted')
+        })
+        .catch(error=>{
+            console.log(error.message);
+            alert(error.message)
+        })
+        }
+      
+        
   }
     
   }

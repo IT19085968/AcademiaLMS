@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Select from "react-select";
-//import "./AddInstructor.css";
 
 export default class AddInstructor extends Component {
     constructor(props) {
@@ -18,6 +17,7 @@ export default class AddInstructor extends Component {
         courses:[],
         selectedCourses:[],
         instructorId: "",
+        //errors:{}
 
       };
     }
@@ -29,7 +29,7 @@ export default class AddInstructor extends Component {
         });
       });
     }
-  
+
     onChange(e) {
       this.setState({ [e.target.name]: e.target.value });
     }
@@ -40,33 +40,112 @@ export default class AddInstructor extends Component {
         courseId: selectedOption.value,
         courseName: selectedOption.label,
       });
+
+
     }
+
+    validationChange = (event) => {
+      event.preventDefault();
+      const { name, value } = event.target;
+      let errors = this.state.errors;
   
-    onSubmit(e) {
-      e.preventDefault();
-      let instructor = {
-        name: this.state.name,
-        email: this.state.email,
-        contactNumber: this.state.contactNumber,
+      switch (name) {
+        case 'IName': 
+          errors.name = 
+            value.length < 5
+              ? 'Name must be at least 5 characters long!'
+              : '';
+          break;
+        case 'IEmail': 
+          errors.email = 
+          value.length < 5
+          ? 'Email must be at least 5 characters long!'
+          : '';
+          break;
+
+          case 'IContactnumber': 
+          errors.email = 
+          value.length < 10
+          ? 'Contact Number should be a 10 digit number!'
+          : '';
+          break;
+
+
         
-      };
+        default:
+          break;
+      }
   
-      axios
-        .post("http://localhost:8080/instructors/", instructor)
-        .then((response) => {
-          this.setState({ instructorId: response.data.id });
-          alert("Data successfully inserted");
-        })
-        .catch((error) => {
-          console.log(error.message);
-          alert(error.message);
-        });
+      this.setState({errors, [name]: value});
     }
+    
+    formValidation = ()=>{
+    
+      let nameError = "";
+      let emailError = "";
+      let contactnumberError = "";
+     
+  
+      if (!this.state.name) {
+        nameError = "Please add the name ";
+      }
+  
+      if (!this.state.email) {
+        emailError = "Please add the email";
+      }
+
+      if (!this.state.contactNumber ) {
+        emailError = "Please add the contact number";
+      }
+  
+  
+     
+  
+      if (nameError || emailError||contactnumberError) {
+        this.setState({nameError, emailError, contactnumberError });
+        return false;
+      }
+  
+      return true;
+    }
+
+
+  
+
+    onSubmit(e){
+      e.preventDefault();
+      const isvalid = this.formValidation();
+
+      if (isvalid){
+        let instructor = {
+                name: this.state.name,
+                email: this.state.email,
+                contactNumber: this.state.contactNumber,
+              
+              };
+                axios
+          .post("http://localhost:8080/instructors/", instructor)
+          .then((response) => {
+            this.setState({ instructorId: response.data.id });
+            alert("Data successfully inserted");
+          })
+          .catch((error) => {
+            console.log(error.message);
+            alert(error.message);
+          });
+      }
+    
+
+      }
+
+      
   
     render() {
+      const {errors} = this.state;
       let options = this.state.courses.map(function (course) {
         return { value: course.id, label: course.name };
       });
+     
       return (
         <div>
           <div id="registration-form">
@@ -81,6 +160,7 @@ export default class AddInstructor extends Component {
                   <label htmlFor="Type">Instructor Name</label>
                   <input
                     type="text"
+                    placeholder="Name"
                     class="form-control"
                     id="Type"
                     name="name"
@@ -88,6 +168,9 @@ export default class AddInstructor extends Component {
                     onChange={this.onChange}
                     aria-describedby="emailHelp"
                   />
+                    <div style={{ fontSize: 12, color: "red" }}>
+                      {this.state.nameError}
+                    </div>
                 </div>
 
                 <div class="row">
@@ -101,6 +184,9 @@ export default class AddInstructor extends Component {
                     onChange={this.onChange}
                     aria-describedby="emailHelp"
                   />
+                  <div style={{ fontSize: 12, color: "red" }}>
+                     {this.state.emailError}
+                  </div>
                 </div>
 
                 <div class="row">
@@ -114,6 +200,9 @@ export default class AddInstructor extends Component {
                     onChange={this.onChange}
                     aria-describedby="emailHelp"
                   />
+                  <div style={{ fontSize: 12, color: "red" }}>
+                      {this.state.contactNumber}
+                    </div>
                 </div>
   
                 <div class="row">
@@ -129,8 +218,6 @@ export default class AddInstructor extends Component {
                     valueKey="id"
                   />
                 </div>
-  
-               
   
                 <input type="submit" value="Submit" />
               </form>

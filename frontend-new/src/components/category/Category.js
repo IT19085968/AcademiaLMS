@@ -12,7 +12,7 @@ const ref = React.createRef();
 const options = {
   orientation: 'landscape',
   unit: 'in',
-  format: [9.5, 8]
+  format: [4.5,4.5]
 };
 
 class Category extends React.Component {

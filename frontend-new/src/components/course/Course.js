@@ -19,7 +19,8 @@ const ref = React.createRef();
 const options = {
   orientation: 'landscape',
   unit: 'in',
-  format: [9.5, 8]
+  // format: [9.5, 8]
+  format: [7, 7],
 };
 
 class Course extends React.Component {

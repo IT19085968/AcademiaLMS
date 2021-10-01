@@ -3,9 +3,6 @@ import axios from "axios";
 import Select from "react-select";
 import AddQuiz from "../addQuiz/addQuiz";
 import "./AddExam.css";
-// const { BrowserRouter, Switch, Route, Link, NavLink } = ReactRouterDOM;
-import { Link, Route, Switch, BrowserRouter, NavLink } from "react-router-dom";
-// import { useLocation } from "react-router";
 
 export default class AddExam extends Component {
   constructor(props) {
@@ -44,7 +41,6 @@ export default class AddExam extends Component {
   }
 
   componentWillMount() {
-    // const location = useLocation();
     axios.get("http://localhost:8080/courses/").then((res) => {
       this.setState({
         courses: res.data,
@@ -67,7 +63,6 @@ export default class AddExam extends Component {
         isEdit: isEdit,
         quizId: quizId,
         startTime: startTime,
-        // selectedOption: courseName,
         courseId: courseId,
         selectedOption: {
           label: courseName,
@@ -75,20 +70,9 @@ export default class AddExam extends Component {
         },
       });
     }
-    // axios.get("http://localhost:8080/exams/" + examId).then((res) => {
-    //   this.setState({
-    //     examDate: res.data.examDate,
-    //     title: res.data.title,
-    //     courseId: res.data.courseId,
-    //     courseName: res.data.courseName,
-
-    //     selectedOption: res.data.courseName,
-    //   });
-    // });
   }
 
   componentDidUpdate() {
-    // const location = useLocation();
     axios.get("http://localhost:8080/courses/").then((res) => {
       this.setState({
         courses: res.data,
@@ -119,27 +103,7 @@ export default class AddExam extends Component {
         },
       });
     }
-    // axios.get("http://localhost:8080/exams/" + examId).then((res) => {
-    //   this.setState({
-    //     examDate: res.data.examDate,
-    //     title: res.data.title,
-    //     courseId: res.data.courseId,
-    //     courseName: res.data.courseName,
-
-    //     selectedOption: res.data.courseName,
-    //   });
-    // });
   }
-
-  // componentDidMount() {
-  //   let quizn = {
-  //     title: this.state.title,
-  //     courseId: this.state.courseId,
-  //     courseName: this.state.courseName,
-  //     examDate: this.state.examDate,
-  //     selectedOption: this.state.courseName,
-  //   };
-  // }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -204,7 +168,6 @@ export default class AddExam extends Component {
         axios
           .put("http://localhost:8080/exams/", examNew)
           .then((response) => {
-            // this.setState({ examId: response.data.id });
             alert("Data successfully inserted");
           })
           .catch((error) => {
@@ -271,22 +234,6 @@ export default class AddExam extends Component {
               </div>
 
               <div class="row">
-                {/* <label>
-              Select Course:
-              <select value={this.state.value} onChange={this.selectedCourses}>
-                {this.state.courses.map((course) => (
-                  <option value={course.name}>{course.name}</option>
-                ))}
-              </select>
-            </label> */}
-                {/* <label>
-              Select Course:
-              <select value={this.state.id} onChange={this.handleChange}>
-                {this.state.courses.map((course) => (
-                  <option value={course.id}>{course.name}</option>
-                ))}
-              </select>
-            </label> */}
                 <label htmlFor="courses">Courses</label>
                 <Select
                   name="form-field-name"

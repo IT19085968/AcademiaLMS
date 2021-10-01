@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import "./Exam.css";
-import ViewQuiz from "../viewQuiz/viewQuiz";
 import AddQuiz from "../addQuiz/addQuiz";
 import AddExam from "./AddExam";
 import { Link, Route, Switch } from "react-router-dom";
@@ -66,10 +65,6 @@ class Exam extends React.Component {
         courses: res.data,
       });
     });
-
-    // let quizn = {
-    //   exams: this.state.exams,
-    // };
   }
 
   onClick(e) {
@@ -93,14 +88,7 @@ class Exam extends React.Component {
   }
 
   viewTheQuiz(quizId, examId) {
-    // if (this.state.quizId) {
-    //   this.setState({
-    //     // quizId: "61279e68495de239a7eccaca",
-    //     quizId: "",
-    //   });
-    // }
     this.setState({
-      // quizId: "61279e68495de239a7eccaca",
       quizId: quizId,
       isEdit: false,
       isEditQuiz: true,
@@ -114,7 +102,6 @@ class Exam extends React.Component {
 
   editExam(examId, title, courseName, examDate, courseId, quizId, startTime) {
     this.setState({
-      // quizId: "61279e68495de239a7eccaca",
       isEdit: true,
       isEditQuiz: false,
       examId: examId,
@@ -175,18 +162,8 @@ class Exam extends React.Component {
           </div>
         </div>
         <div className="addClass ">
-          {/* <button type="submit" className="btn btn-primary">
-            Add Exam
-          </button> */}
-          {/* <a class="btn btn-primary" href="/add-exam" role="button">
-            Add Exam
-          </a> */}
           <Link to={{ pathname: "/add-exam" }}>
-            <button
-              type="button"
-              className="btn waves-effect waves-green"
-              // onClick={this.onClick}
-            >
+            <button type="button" className="btn waves-effect waves-green">
               Add Exam
             </button>
           </Link>
@@ -205,7 +182,6 @@ class Exam extends React.Component {
                     name="searchExam"
                     value={this.state.searchExam}
                     onChange={this.onChange}
-                    // aria-describedby="emailHelp"
                   />
                 </div>
 
@@ -263,7 +239,6 @@ class Exam extends React.Component {
                       <button
                         onClick={(e) => this.deleteExam(exam.id)}
                         className="btn waves-effect waves-red"
-                        // style={"background-color: #f44336;"}
                       >
                         Delete Exam
                       </button>
@@ -272,25 +247,8 @@ class Exam extends React.Component {
                 ))}
               </tbody>
             </table>
-            {/* <Pdf targetRef={ref} filename="CourseList.pdf" options={options}>
-              {({ toPdf }) => (
-                <input
-                  type="button"
-                  value="Export"
-                  onClick={toPdf}
-                  className="btn btn-info"
-                />
-              )}
-            </Pdf> */}
           </div>
         </div>
-        {/* <div className="col s6">
-          {this.state.quizId && this.state.isEdit == false ? (
-            <ViewQuiz quizId={this.state.quizId} />
-          ) : (
-            ""
-          )}
-        </div> */}
         <div className="col s6">
           {this.state.quizId && this.state.isEdit == false ? (
             <AddQuiz
@@ -328,17 +286,6 @@ class Exam extends React.Component {
             <div className="reportClass">
               <form onSubmit={(e) => this.onSubmit(e)}>
                 <h3>Generate Reports</h3>
-                {/* <div class="row"> */}
-                {/* <label htmlFor="Type">Course Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="Type"
-                  name="selectedCourse"
-                  value={this.state.selectedCourse}
-                  onChange={this.onChange}
-                  aria-describedby="emailHelp"
-                /> */}
                 <br />
                 <h5> Search by Course Name</h5>
                 <Select
@@ -351,16 +298,9 @@ class Exam extends React.Component {
                   labelKey="name"
                   valueKey="id"
                 />
-                {/* </div> */}
-                {/* <input
-                  type="submit"
-                  value="Search"
-                  className="btn waves-effect waves-blue3"
-                /> */}
                 <button
                   type="submit"
                   className="btn waves-effect waves-blue3"
-                  // onClick={this.onClick}
                   disabled={!this.state.selectedCourse}
                 >
                   Search
